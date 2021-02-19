@@ -1,0 +1,17 @@
+﻿Pclass,Sex,Embarked,Fare,Survival
+Upper,Male,Cherbourg,Expensive,F
+Upper,Female,Cherbourg,Expensive,T
+Middle,Female,Queenstown,Expensive,F
+Upper,Female,Queenstown,Expensive,T
+Lower,Female,Queenstown,Expensive,F
+Middle,Male,Cherbourg,Expensive,T
+Lower,Male,Queenstown,Cheap,F
+Middle,Male,Queenstown,Expensive,T
+Middle,Female,Cherbourg,Cheap,F
+Upper,Male,Cherbourg,Expensive,T
+Upper,Male,Cherbourg,Expensive,T
+Middle,Female,Queenstown,Expensive,T
+Upper,Male,Queenstown,Cheap,F
+Middle,Male,Cherbourg,Cheap,F
+Lower,Male,Queenstown,Cheap,F
+Upper,Male,Cherbourg,Cheap,T

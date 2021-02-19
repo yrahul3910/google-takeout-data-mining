@@ -1,0 +1,17 @@
+﻿BTF,Gender,EL,MS,Label
+Travel Rarely,Male,L2,Married,N
+Travel Rarely,Male,L2,Married,N
+Travel Rarely,Female,L4,Single,N
+Travel Rarely,Female,L3,Divorced,N
+Travel Frequently,Male,L1,Divorced,N
+Travel Frequently,Male,L1,Single,N
+Travel Frequently,Female,L2,Married,Y
+Travel Frequently,Female,L4,Divorced,Y
+Travel Frequently,Male,L1,Married,Y
+Travel Frequently,Male,L3,Divorced,Y
+Travel Frequently,Male,L2,Married,Y
+Travel Frequently,Male,L2,Single,N
+Travel Frequently,Female,L1,Single,Y
+Travel Frequently,Male,L4,Single,Y
+Travel Frequently,Female,L3,Divorced,N
+Travel Frequently,Female,L4,Divorced,N
