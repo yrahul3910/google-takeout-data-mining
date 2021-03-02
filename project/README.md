@@ -14,6 +14,17 @@ Go to [Google Takeout](https://takeout.google.com) and request a copy of your da
 
 Download the files. In the YouTube and YouTube Music folder, delete the videos folder. This saves disk space.
 
+# Setting up the code
+
+1. **Obtain an API key.**
+    1. Go to the [Google Cloud APIs dashboard](https://console.cloud.google.com/apis/credentials), select Create Credentials, followed by API Key. Copy the key.
+    2. Restrict your API key. Click on your newly generated key, and under API Restrictions, select Restrict Key. In the search box, type in "Distance Matrix API" and "Places API". Restrict the key to these two APIs.
+    3. Use the sidebar to go to the dashboard, click Enable APIs and Services, and enable those two APIs.
+2. **Set up Google Cloud billing.** You may need to set up your Google Cloud account with billing information. You can do so in the Billing section of the sidebar.
+3. **Create a .env file.** This will hide your API key. **DO NOT COMMIT THIS FILE.** If you do, anyone will be able to access the APIs and you will be billed for it. If you're feeling altruistic, donate instead. In this file, add in one line, `KEY=<your API key>`.
+
+You should now be able to run the code.
+
 
 # Fit:
 
