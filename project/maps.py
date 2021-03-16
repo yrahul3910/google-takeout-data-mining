@@ -63,6 +63,11 @@ def parse_maps_data(user):
     :param {str} user - Username in the data/ directory.
     :return {float} Estimate of gas usage per month.
     """
+    # If cache is available, use it.
+    if os.path.exists('.maps.cache'):
+        with open('.maps.cache') as f:
+            return json.load(f)
+
     base_path = f'./data/{user}/Takeout/Maps/My labeled places'
 
     if not os.path.exists(f'{base_path}/Labeled places.json'):
@@ -114,8 +119,13 @@ def parse_maps_data(user):
         gallons_needed = distance_in_miles / 32.
         fuel_needed_in_liters = 3.79 * gallons_needed
 
-    return {
+    results = {
         'total_distance': total_distance / 1000,
         'places': places,
         'fuel_needed': fuel_needed_in_liters
     }
+
+    with open('.maps.cache', 'w') as f:
+        json.dump(results, f)
+
+    return results

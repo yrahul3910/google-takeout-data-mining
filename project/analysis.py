@@ -1,6 +1,3 @@
-import xml
-import datetime
-
 import googlemaps
 import numpy as np
 
@@ -20,4 +17,4 @@ def parse_user_data(user):
 
 
 if __name__ == '__main__':
-    print(parse_maps_data('rahul'))
+    print(parse_user_data('rahul'))

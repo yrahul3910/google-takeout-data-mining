@@ -1,6 +1,6 @@
 from utils import get_key
 import os
-import xml
+import xml.etree.ElementTree
 import datetime
 
 
@@ -36,13 +36,21 @@ def parse_fit_data(user):
         for activity in activities:
             # Get the sport and date/time
             sport = activity.attrib['Sport']
-            date = activity[0]
+            date = activity[0].text
 
             # Walk down the XML tree
             lap = activity[1]
             track = lap[0]
-            calories = float(lap.find('Calories').text)
-            distance = float(lap.find('DistanceMeters').text)
+
+            try:
+                calories = float(lap.find('Calories').text)
+            except AttributeError:
+                calories = 0
+
+            try:
+                distance = float(lap.find('DistanceMeters').text)
+            except AttributeError:
+                distance = 0
 
             cur_file_summary['calories'] += calories
             cur_file_summary['distance'] += distance
