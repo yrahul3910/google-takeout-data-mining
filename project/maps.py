@@ -93,13 +93,16 @@ def parse_maps_data(user):
         if 'Home' in names and 'Work' in names:
             # Get distance between home and work addresses
             home = list(
-                filter(lambda p: p['properties']['name'] == 'Home', features))[0]
+                filter(lambda p: p['properties']['name'] == 'Home',
+                       features))[0]
             work = list(
-                filter(lambda p: p['properties']['name'] == 'Work', features))[0]
+                filter(lambda p: p['properties']['name'] == 'Work',
+                       features))[0]
 
             total_distance += 1.2 * \
                 get_maps_distance(
-                    [home['geometry']['coordinates'][::-1], work['geometry']['coordinates'][::-1]])
+                    [home['geometry']['coordinates'][::-1],
+                     work['geometry']['coordinates'][::-1]])
         else:
             # (1. / 1.2) / 2 = 0.416
             total_distance += 0.416 * get_maps_distance(coords)
