@@ -1,15 +1,16 @@
 # Obtaining the data
 Go to [Google Takeout](https://takeout.google.com) and request a copy of your data. Select the following:
-* Contacts
+* Chrome
 * Fit
-* Google Account
+* Google Chat
+* Google Cloud Search
+* Google Shopping
 * Hangouts
 * Location History
+* Mail
 * Maps
 * Maps (your places)
-* My Activity
 * Search contributions
-* Shopping Lists
 * YouTube and YouTube Music
 
 Download the files. In the YouTube and YouTube Music folder, delete the videos folder. This saves disk space.
@@ -25,6 +26,9 @@ Download the files. In the YouTube and YouTube Music folder, delete the videos f
 
 You should now be able to run the code.
 
+# Broad ideas
+
+* 
 
 # Fit:
 
