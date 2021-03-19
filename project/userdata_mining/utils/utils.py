@@ -1,5 +1,7 @@
 import glob
 import os
+from collections.abc import Iterable
+from typing import Callable
 
 
 def get_key():
@@ -16,5 +18,15 @@ def flush_caches():
     caches, requiring new API calls to fetch data. Only do this
     if you are sure.
     """
-    for file in glob.glob('.*.cache'):
+    for file in glob.glob('caches/.*.cache'):
         os.remove(file)
+
+
+def _map(obj: Iterable, func: Callable):
+    """
+    A wrapper around map(...) that behaves more like JS.
+
+    :param {Iterable} - An iterable object.
+    :param {Callable} - A function or lambda
+    """
+    return list(map(func, obj))

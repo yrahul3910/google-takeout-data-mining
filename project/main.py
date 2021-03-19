@@ -1,9 +1,8 @@
 import googlemaps
 import numpy as np
-
-from utils import get_key
-from maps import parse_maps_data
-from fit import parse_fit_data
+from userdata_mining.utils import get_key
+from userdata_mining.mining import parse_maps_data
+from userdata_mining.mining import parse_fit_data
 
 
 def parse_user_data(user):

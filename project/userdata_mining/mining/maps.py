@@ -1,4 +1,4 @@
-from utils import get_key
+from userdata_mining.utils import get_key
 import os
 import json
 import googlemaps
@@ -64,8 +64,8 @@ def parse_maps_data(user):
     :return {float} Estimate of gas usage per month.
     """
     # If cache is available, use it.
-    if os.path.exists('.maps.cache'):
-        with open('.maps.cache') as f:
+    if os.path.exists('caches/.maps.cache'):
+        with open('caches/.maps.cache') as f:
             return json.load(f)
 
     base_path = f'./data/{user}/Takeout/Maps/My labeled places'
@@ -128,7 +128,7 @@ def parse_maps_data(user):
         'fuel_needed': fuel_needed_in_liters
     }
 
-    with open('.maps.cache', 'w') as f:
+    with open('caches/.maps.cache', 'w') as f:
         json.dump(results, f)
 
     return results

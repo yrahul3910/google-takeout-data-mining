@@ -13,7 +13,7 @@ Go to [Google Takeout](https://takeout.google.com) and request a copy of your da
 * Search contributions
 * YouTube and YouTube Music
 
-Download the files. In the YouTube and YouTube Music folder, delete the videos folder. This saves disk space.
+Download the files. In the YouTube and YouTube Music folder, delete the videos and uploads folders. This saves disk space. Put the `Takeout` folder in a directory called `data/<name>`, so that the directory structure is `data/<user>/Takeout`.
 
 # Setting up the code
 
@@ -23,12 +23,10 @@ Download the files. In the YouTube and YouTube Music folder, delete the videos f
     3. Use the sidebar to go to the dashboard, click Enable APIs and Services, and enable those two APIs.
 2. **Set up Google Cloud billing.** You may need to set up your Google Cloud account with billing information. You can do so in the Billing section of the sidebar.
 3. **Create a .env file.** This will hide your API key. **DO NOT COMMIT THIS FILE.** If you do, anyone will be able to access the APIs and you will be billed for it. If you're feeling altruistic, donate instead. In this file, add in one line, `KEY=<your API key>`.
+4. **Install the requirements.** Run `python3 -m pip install -r requirements.txt` to do this.
+5. **Run the code.** Run `python3 main.py`
 
 You should now be able to run the code.
-
-# Broad ideas
-
-* 
 
 # Fit:
 
@@ -40,15 +38,6 @@ The `Activities` folder has XML files (.tcx) for each activity. The filename end
   * Use <StartTime> to see what part of the day user is active
   * Use <Calories> + an estimate of the idle calories burned to estimate user health
   * Use <DistanceMeters> to see if user is involved in, say, 5k, and needs equipment for that
-
-
-# Location History:
-
-## Data description:
-??
-
-## What can we find out:
-??
 
 
 # Maps:

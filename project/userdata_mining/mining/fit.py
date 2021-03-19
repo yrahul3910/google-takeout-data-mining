@@ -1,4 +1,4 @@
-from utils import get_key
+from userdata_mining.utils import get_key
 import os
 import xml.etree.ElementTree
 import datetime
