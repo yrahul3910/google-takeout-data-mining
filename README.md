@@ -28,39 +28,48 @@ Download the files. In the YouTube and YouTube Music folder, delete the videos a
 
 You should now be able to run the code.
 
-# Fit:
+# Chrome
 
-## Data description:
+## Data description
+The `Autofill.json` file contains auto-fill data saved in Google Chrome. This contains address information that can be mined. The `BrowserHistory.json` file contains browser history. We mine this file for page titles.
+
+## What can we find out
+* Where the user lives, and therefore, nearby places
+* Pages the user visited, and therefore, potential interests
+
+# Fit
+
+## Data description
 The `Activities` folder has XML files (.tcx) for each activity. The filename ends with the activity performed. This in turn can help determine what products the user may buy. The XML structure has <TotalTimeSeconds>, <Calories>, <StartTime>, and <DistanceMeters> keys. The `Daily activity metrics` may not be particularly helpful.
 
-## What can we find out:
+## What can we find out
 * Activities
   * Use <StartTime> to see what part of the day user is active
   * Use <Calories> + an estimate of the idle calories burned to estimate user health
   * Use <DistanceMeters> to see if user is involved in, say, 5k, and needs equipment for that
 
 
-# Maps:
+# Maps
 
-## Data description:
+## Data description
 * Photos contribution has JSON files that store EXIF data for each photo. This may be useful.
 * My labeled placed has a JSON file with locations and labels. This could be used to determine the distance between Home and Work, or other pairs of places, find the distance using an API, and compute an estimate of the fuel requirements.
 * Commute settings has a JSON that can be used in addition to the above to decide if the user has a car.
 
-## What can we find out:
+## What can we find out
 * Does the user have a car?
 * How much does the user travel monthly?
 * What is the fuel estimate of the user per month?
 * Who are the user's friends?
 
 
-# YouTube and YouTube Music:
+# YouTube and YouTube Music
 
-## Data description:
+## Data description
 * playlists has a JSON for each playlist, aside from Watch later and Liked videos.
 * subscriptions has a JSON of subscriptions. We can mine the description for interests.
 
-## What can we find out:
+## What can we find out
 * Topics of interest to the user
 
 
