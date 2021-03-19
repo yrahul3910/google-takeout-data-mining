@@ -37,7 +37,7 @@ def parse_autofill(user):
     if len(profile) == 0:
         return []
 
-    addresses = _map(profile, lambda p: p['address_home_street_address'])
+    addresses = list(map(lambda p: p['address_home_street_address'], profile))
 
     # Geocode the addresses
     client = googlemaps.Client(key=get_key())
@@ -51,3 +51,26 @@ def parse_autofill(user):
         f.write(str(places))
 
     return places
+
+
+def parse_browser_history(user):
+    """
+    Parses the user's browser history.
+
+    :param {str} user - The user name.
+    :return {list} A list of page titles.
+    """
+    path = f'./data/{user}/Takeout/Chrome/BrowserHistory.json'
+    if not os.path.exists(path):
+        return []
+
+    with open(path, 'r') as f:
+        profile = json.load(f)
+
+    profile = profile['Browser History']
+
+    # Is the history empty?
+    if len(profile) == 0:
+        return []
+
+    return list(map(lambda p: p['title'], profile))
