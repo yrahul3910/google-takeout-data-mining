@@ -7,7 +7,7 @@ from userdata_mining.utils import get_key
 from userdata_mining.mining import get_nearby_places
 
 
-def parse_autofill(user):
+def parse_autofill(user, data_path='.'):
     """
     Parses the user's autofill data.
 
@@ -24,7 +24,7 @@ def parse_autofill(user):
             assert isinstance(result, list)
             return result
 
-    path = f'./data/{user}/Takeout/Chrome/Autofill.json'
+    path = f'{data_path}/data/{user}/Takeout/Chrome/Autofill.json'
     if not os.path.exists(path):
         return []
 
@@ -37,13 +37,14 @@ def parse_autofill(user):
     if len(profile) == 0:
         return []
 
-    addresses = list(map(lambda p: p['address_home_street_address'], profile))
+    addresses = [p['address_home_street_address'] for p in profile]
 
     # Geocode the addresses
     client = googlemaps.Client(key=get_key())
     places = []
     for address in addresses:
         coords = client.geocode(address=address)
+        coords = list(coords[0]['geometry']['location'].values())
         places.extend(get_nearby_places(coords))
 
     # Save to cache
@@ -53,15 +54,16 @@ def parse_autofill(user):
     return places
 
 
-def parse_browser_history(user):
+def parse_browser_history(user, data_path='.'):
     """
     Parses the user's browser history.
 
     :param {str} user - The user name.
     :return {list} A list of page titles.
     """
-    path = f'./data/{user}/Takeout/Chrome/BrowserHistory.json'
+    path = f'{data_path}/data/{user}/Takeout/Chrome/BrowserHistory.json'
     if not os.path.exists(path):
+        print('[WARN] BrowserHistory.js does not exist.')
         return []
 
     with open(path, 'r') as f:

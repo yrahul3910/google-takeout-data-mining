@@ -4,6 +4,18 @@ from collections.abc import Iterable
 from typing import Callable
 
 
+def get_username(data_path='.'):
+    """
+    Fetches the user whose data is on disk.
+    """
+    users = os.listdir(f'{data_path}/data')
+    if len(users) == 0:
+        print('WARN: No users to mine.')
+        return None
+    else:
+        return users[0]
+
+
 def get_key():
     # Get the API key from the .env file
     with open('.env', 'r') as f:

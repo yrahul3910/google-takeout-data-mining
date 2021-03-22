@@ -43,7 +43,7 @@ def get_nearby_places(coords):
                                     open_now=True)
 
     token = maps_res.get('next_page_token', None)
-    places.extend(maps_res['results'])
+    places.extend([x['name'] for x in maps_res['results']])
     while token:
         maps_res = client.places_nearby(location=coords,
                                         radius=1000,
@@ -56,7 +56,7 @@ def get_nearby_places(coords):
     return places
 
 
-def parse_maps_data(user):
+def parse_maps_data(user, data_path='.'):
     """
     Parses Maps data of a user..
 
@@ -68,7 +68,7 @@ def parse_maps_data(user):
         with open('caches/.maps.cache') as f:
             return json.load(f)
 
-    base_path = f'./data/{user}/Takeout/Maps/My labeled places'
+    base_path = f'{data_path}/data/{user}/Takeout/Maps/My labeled places'
 
     if not os.path.exists(f'{base_path}/Labeled places.json'):
         return {

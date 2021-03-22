@@ -1,17 +1,22 @@
 import googlemaps
 import numpy as np
 from userdata_mining.utils import get_key
-from userdata_mining.mining import parse_maps_data
-from userdata_mining.mining import parse_fit_data
+from userdata_mining.mining import *
 
 
 def parse_user_data(user):
     fit_data = parse_fit_data(user)
     maps_data = parse_maps_data(user)
+    autofill_data = parse_autofill(user)
+    browser_data = parse_browser_history(user)
 
     return {
         'maps': maps_data,
-        'fit': fit_data
+        'fit': fit_data,
+        'chrome': {
+            'autofill': autofill_data,
+            'history': browser_data
+        }
     }
 
 

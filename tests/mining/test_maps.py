@@ -1,19 +1,22 @@
-from userdata_mining.mining import parse_maps_data
-from userdata_mining.utils import flush_caches
+from userdata_mining.mining import *
+from userdata_mining.utils import flush_caches, get_username
 import os
 from numbers import Number
 
 
-def get_username():
-    """
-    Fetches the user whose data is on disk.
-    """
-    users = os.listdir('../data/')
-    if len(users) == 0:
-        print('WARN: No users to mine.')
-        return None
-    else:
-        return users[0]
+def test_maps_distance():
+    eb2_coords = [35.772118381683015, -78.67368013731435]
+    talley_coords = [35.783540341056266, -78.67065028705414]
+    result = get_maps_distance([eb2_coords, talley_coords])
+    assert isinstance(result, float)
+    assert result > 0
+
+
+def test_nearby_places():
+    talley_coords = [35.783540341056266, -78.67065028705414]
+    result = get_nearby_places(talley_coords)
+    assert isinstance(result, list)
+    assert len(result) > 0
 
 
 def test_parse_maps_data():
@@ -41,5 +44,6 @@ def test_parse_maps_data():
 
 
 def test_cache_works():
-    caches = os.listdir('../caches/')
+    results = parse_maps_data('rahul')
+    caches = os.listdir('./caches/')
     assert '.maps.cache' in caches

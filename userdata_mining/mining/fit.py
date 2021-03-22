@@ -4,7 +4,7 @@ import xml.etree.ElementTree
 import datetime
 
 
-def parse_fit_data(user):
+def parse_fit_data(user, data_path='.'):
     """
     Parses Google Fit data for a user. If no data exists,
     returns None.
@@ -17,7 +17,7 @@ def parse_fit_data(user):
         'dates': list
     }
     """
-    base_path = f'./data/{user}/Takeout/Fit/Activities'
+    base_path = f'{data_path}/data/{user}/Takeout/Fit/Activities'
 
     if not os.path.exists(base_path):
         return None
