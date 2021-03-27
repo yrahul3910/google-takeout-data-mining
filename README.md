@@ -2,14 +2,12 @@
 Go to [Google Takeout](https://takeout.google.com) and request a copy of your data. Select the following:
 * Chrome
 * Fit
-* Google Chat
-* Google Cloud Search
-* Google Shopping
 * Hangouts
 * Location History
 * Mail
 * Maps
 * Maps (your places)
+* My Activity
 * Search contributions
 * YouTube and YouTube Music
 

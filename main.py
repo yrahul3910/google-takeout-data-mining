@@ -9,6 +9,8 @@ def parse_user_data(user):
     maps_data = parse_maps_data(user)
     autofill_data = parse_autofill(user)
     browser_data = parse_browser_history(user)
+    hangouts_data = parse_hangouts_data(user)
+    mail_data = parse_mail_data(user)
 
     return {
         'maps': maps_data,
@@ -16,7 +18,9 @@ def parse_user_data(user):
         'chrome': {
             'autofill': autofill_data,
             'history': browser_data
-        }
+        },
+        'hangouts': hangouts_data,
+        'mail': mail_data
     }
 
 
