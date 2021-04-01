@@ -25,4 +25,5 @@ def parse_user_data(user):
 
 
 if __name__ == '__main__':
-    print(parse_user_data('rahul'))
+    miner = GoogleDataMiner(user='rahul')
+    miner.mine_data()

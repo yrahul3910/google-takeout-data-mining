@@ -1,4 +1,4 @@
-from userdata_mining.utils import get_key
+from userdata_mining.utils import get_key, warn
 import os
 import xml.etree.ElementTree
 import datetime
@@ -20,9 +20,11 @@ def parse_fit_data(user, data_path='.'):
     base_path = f'{data_path}/data/{user}/Takeout/Fit/Activities'
 
     if not os.path.exists(base_path):
+        warn('Fit data does not exist.')
         return None
 
     if len(os.listdir(base_path)) == 0:
+        warn('Fit directory is empty.')
         return None
 
     activities_summary = []

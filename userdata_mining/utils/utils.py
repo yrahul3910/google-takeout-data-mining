@@ -2,6 +2,29 @@ import glob
 import os
 from collections.abc import Iterable
 from typing import Callable
+from colorama import init, Fore
+
+
+def warn(string: str):
+    """
+    Prints a warning message to the terminal.
+
+    :param {str} string - The message to print.
+    """
+    init()
+    pre = Fore.YELLOW + '[WARN] ' + Fore.RESET
+    print(pre + string.replace('\n', '\n' + pre))
+
+
+def debug(string: str):
+    """
+    Prints a debug message to the terminal.
+
+    :param {str} string - The message to print.
+    """
+    init()
+    pre = Fore.BLUE + '[DEBUG] ' + Fore.RESET
+    print(pre + string.replace('\n', '\n' + pre))
 
 
 def get_username(data_path='.'):
@@ -10,7 +33,7 @@ def get_username(data_path='.'):
     """
     users = os.listdir(f'{data_path}/data')
     if len(users) == 0:
-        print('WARN: No users to mine.')
+        warn('No users to mine.')
         return None
     else:
         return users[0]

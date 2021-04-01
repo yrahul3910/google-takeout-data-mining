@@ -3,7 +3,7 @@ import os
 import googlemaps
 import ast
 
-from userdata_mining.utils import get_key
+from userdata_mining.utils import get_key, warn
 from userdata_mining.mining import get_nearby_places
 
 
@@ -26,6 +26,7 @@ def parse_autofill(user, data_path='.'):
 
     path = f'{data_path}/data/{user}/Takeout/Chrome/Autofill.json'
     if not os.path.exists(path):
+        warn('Path the Chrome autofill data does not exist.')
         return []
 
     with open(path, 'r') as f:
@@ -63,7 +64,7 @@ def parse_browser_history(user, data_path='.'):
     """
     path = f'{data_path}/data/{user}/Takeout/Chrome/BrowserHistory.json'
     if not os.path.exists(path):
-        print('[WARN] BrowserHistory.js does not exist.')
+        warn('BrowserHistory.json does not exist.')
         return []
 
     with open(path, 'r') as f:
