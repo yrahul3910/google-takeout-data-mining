@@ -7,7 +7,7 @@ class Embedding:
     Performs embedding on sentences.
     """
 
-    def __init__(self, model='gpt2-large'):
+    def __init__(self, model='gpt2-medium'):
         """
         Initializes the embedding model.
 
@@ -23,4 +23,5 @@ class Embedding:
         :param {str} sentence - A cased or uncased sentence.
         """
         sent = Sentence(sentence)
-        return self.model.embed(sent)
+        self.model.embed(sent)
+        return sent.embedding.detach().numpy()

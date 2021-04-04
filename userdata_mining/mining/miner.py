@@ -34,6 +34,21 @@ class DataMiner(ABC):
         else:
             self.user = user
 
+    def __getitem__(self, key):
+        return self.__getattribute__(key)
+
+    def __repr__(self):
+        """
+        Returns a string representation of the data stored by
+        the object.
+        """
+        string = ''
+        variables = [x for x in dir(self) if not x.startswith(
+            '_') and not callable(self[x])]
+        for key in variables:
+            string += f'{key}: {self[key]}\n'
+        return string
+
     def mine_data(self):
         return NotImplemented
 
