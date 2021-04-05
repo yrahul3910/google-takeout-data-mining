@@ -1,4 +1,4 @@
-from userdata_mining.utils import get_username, debug
+from userdata_mining.utils import get_username, debug, info
 from userdata_mining.mining import parse_fit_data
 from userdata_mining.mining import parse_autofill, parse_browser_history
 from userdata_mining.mining import parse_maps_data
@@ -50,7 +50,7 @@ class DataMiner(ABC):
             string += f'{key}: {self[key]}\n'
         return string
 
-    def mine_data(self):
+    def mine_data(self, data_path='.'):
         return NotImplemented
 
 
@@ -60,12 +60,16 @@ class GoogleDataMiner(DataMiner):
     """
 
     def mine_data(self):
-        fit_data = parse_fit_data(self.user)
-        maps_data = parse_maps_data(self.user)
-        autofill_data = parse_autofill(self.user)
-        browser_data = parse_browser_history(self.user)
-        hangouts_data = parse_hangouts_data(self.user)
-        mail_data = parse_mail_data(self.user)
+        fit_data = parse_fit_data(self.user, data_path=self.data_path)
+        maps_data = parse_maps_data(self.user, data_path=self.data_path)
+        autofill_data = parse_autofill(self.user, data_path=self.data_path)
+        browser_data = parse_browser_history(
+            self.user, data_path=self.data_path)
+        hangouts_data = parse_hangouts_data(
+            self.user, data_path=self.data_path)
+        mail_data = parse_mail_data(self.user, data_path=self.data_path)
+
+        info('Data parsed.')
 
         # Extract features from Fit data
         # First, get total distance, total distance in past year,
@@ -93,8 +97,22 @@ class GoogleDataMiner(DataMiner):
         self.distance_traveled = maps_data['total_distance']
         self.nearby_places_embeddings = [
             embedding.embed(x) for x in maps_data['places']]
-        self.email_embeddings = [embedding.embed(x) for x in mail_data]
 
-        # Cache email embeddings
-        with open('.mail.cache', 'wb') as f:
-            pickle.dump(self.email_embeddings, f)
+        if mail_data is None:
+            # Load cached embeddings
+            with open(f'{self.data_path}/saved/embeddings/mail.pickle', 'rb') as f:
+                self.email_embeddings = pickle.load(f)
+        else:
+            info('Embedding email data. This may take a while.')
+            self.email_embeddings = [embedding.embed(x) for x in mail_data]
+            # Cache email embeddings
+            with open(f'{self.data_path}/saved/embeddings/mail.pickle', 'wb') as f:
+                pickle.dump(self.email_embeddings, f)
+
+        info(f'Embedding complete. Data details:\n' +
+             f'Autofill: {len(self.autofill_place_embeddings)} item(s).\n' +
+             f'Browser history: {len(self.history_embeddings)} item(s).\n' +
+             f'Hangouts: {len(self.messages_embeddings)} item(s).\n' +
+             f'Monthly travel estimate: {self.distance_traveled} km.\n' +
+             f'Nearby places: {len(self.nearby_places_embeddings)} item(s).\n' +
+             f'Email: {len(self.email_embeddings)} item(s).')

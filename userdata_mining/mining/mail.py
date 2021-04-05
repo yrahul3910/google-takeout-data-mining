@@ -114,6 +114,10 @@ def parse_mail_data(user, data_path='.'):
     :param {str} data_path - Path to the data/ directory, without the trailing /.
     :return {list} A list of messages
     """
+    # First, check for cache
+    if os.path.exists(f'{data_path}/saved/embeddings/mail.pickle'):
+        return None
+
     path = f'{data_path}/data/{user}/Takeout/Mail/All mail Including Spam and Trash.mbox'
 
     # Check if path exists

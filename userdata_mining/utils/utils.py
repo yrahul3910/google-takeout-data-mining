@@ -5,6 +5,17 @@ from typing import Callable
 from colorama import init, Fore
 
 
+def info(string: str):
+    """
+    Prints a information message to the terminal.
+
+    :param {str} string - The message to print.
+    """
+    init()
+    pre = Fore.GREEN + '[INFO] ' + Fore.RESET
+    print(pre + string.replace('\n', '\n' + pre))
+
+
 def warn(string: str):
     """
     Prints a warning message to the terminal.
