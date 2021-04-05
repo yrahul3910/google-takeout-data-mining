@@ -10,6 +10,7 @@ from abc import ABC
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from dateutil import parser
+import pickle
 import pandas as pd
 
 
@@ -93,3 +94,7 @@ class GoogleDataMiner(DataMiner):
         self.nearby_places_embeddings = [
             embedding.embed(x) for x in maps_data['places']]
         self.email_embeddings = [embedding.embed(x) for x in mail_data]
+
+        # Cache email embeddings
+        with open('.mail.cache', 'wb') as f:
+            pickle.dump(self.email_embeddings, f)
