@@ -14,7 +14,7 @@ class Embedding:
         :param {str} model - The model architecture. Must be one of
         https://huggingface.co/transformers/pretrained_models.html
         """
-        self.model = TransformerDocumentEmbeddings(model)
+        self.model = TransformerDocumentEmbeddings(model, batch_size=8)
 
     def embed(self, sentence: str) -> list:
         """
@@ -24,4 +24,4 @@ class Embedding:
         """
         sent = Sentence(sentence)
         self.model.embed(sent)
-        return sent.embedding.detach().numpy()
+        return sent.embedding.detach().cpu().numpy()

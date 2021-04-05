@@ -84,7 +84,7 @@ class GoogleDataMiner(DataMiner):
             'total_cal_yr': total_cal_year
         }
 
-        embedding = Embedding()
+        embedding = Embedding(model='bert-base-uncased')
         self.autofill_place_embeddings = [
             embedding.embed(x) for x in autofill_data]
         self.history_embeddings = [embedding.embed(x) for x in browser_data]

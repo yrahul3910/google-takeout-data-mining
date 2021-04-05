@@ -125,6 +125,8 @@ def parse_mail_data(user, data_path='.'):
     messages = []
     for message in box:
         message_obj = GmailMboxMessage(message)
-        messages.append(message_obj.parse_email())
+        parsed_mail = message_obj.parse_email()
+        if parsed_mail != [] and not re.match('\s+', parsed_mail):
+            messages.append(parsed_mail)
 
     return messages
