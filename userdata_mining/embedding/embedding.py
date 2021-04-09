@@ -25,7 +25,11 @@ class Embedding:
         """
         if isinstance(sentence, bytes):
             sentence = sentence.decode('ascii')
-        if sentence == '' or re.match('^\s+$', sentence):
+
+        if isinstance(sentence, list):
+            sentence = ' '.join(sentence)
+
+        if sentence == '':
             return None
 
         try:
