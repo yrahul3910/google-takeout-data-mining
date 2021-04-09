@@ -1,3 +1,4 @@
+import re
 from flair.data import Sentence
 from flair.embeddings import TransformerDocumentEmbeddings
 
