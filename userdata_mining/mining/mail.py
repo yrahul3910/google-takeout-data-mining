@@ -108,7 +108,7 @@ class GmailMboxMessage():
 
 def parse_mail_data(user, data_path='.'):
     """
-    Parses a user's email data in mbox format.
+    Parses a user's email data in mbox format. If cache exists, returns None.
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, without the trailing /.

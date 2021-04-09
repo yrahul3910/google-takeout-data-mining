@@ -18,10 +18,13 @@ class Embedding:
 
     def embed(self, sentence: str) -> list:
         """
-        Embeds a given sentence.
+        Embeds a given sentence. If it fails, returns None.
 
         :param {str} sentence - A cased or uncased sentence.
         """
-        sent = Sentence(sentence)
-        self.model.embed(sent)
-        return sent.embedding.detach().cpu().numpy()
+        try:
+            sent = Sentence(sentence)
+            self.model.embed(sent)
+            return sent.embedding.detach().cpu().numpy()
+        except TypeError:
+            return None

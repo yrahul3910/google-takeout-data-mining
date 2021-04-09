@@ -93,10 +93,24 @@ class GoogleDataMiner(DataMiner):
         self.autofill_place_embeddings = [
             embedding.embed(x) for x in autofill_data]
         self.history_embeddings = [embedding.embed(x) for x in browser_data]
-        self.messages_embeddings = [embedding.embed(x) for x in hangouts_data]
         self.distance_traveled = maps_data['total_distance']
         self.nearby_places_embeddings = [
             embedding.embed(x) for x in maps_data['places']]
+
+        if hangouts_data is None:
+            # Load cached embeddings
+            with open(f'{self.data_path}/saved/embeddings/hangouts.pickle', 'rb') as f:
+                self.email_embeddings = pickle.load(f)
+        else:
+            info('Embedding Hangouts data. This may take a while.')
+            self.messages_embeddings = [
+                embedding.embed(x) for x in hangouts_data]
+            self.messages_embeddings = [
+                x for x in self.messages_embeddings if x is not None]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/hangouts.pickle', 'wb') as f:
+                pickle.dump(self.messages_embeddings, f)
 
         if mail_data is None:
             # Load cached embeddings
