@@ -14,7 +14,7 @@ def parse_hangouts_data(user, data_path='.'):
     :return {list} user messages
     """
     # First, check for cache
-    if os.path.exists(f'{data_path}/saved/embeddings/mail.pickle'):
+    if os.path.exists(f'{data_path}/saved/embeddings/hangouts.pickle'):
         return None
 
     # Does the directory exist?
