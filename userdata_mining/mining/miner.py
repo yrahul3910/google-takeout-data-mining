@@ -119,6 +119,8 @@ class GoogleDataMiner(DataMiner):
         else:
             info('Embedding email data. This may take a while.')
             self.email_embeddings = [embedding.embed(x) for x in mail_data]
+            self.email_embeddings = [
+                x for x in self.email_embeddings if x is not None]
             # Cache email embeddings
             with open(f'{self.data_path}/saved/embeddings/mail.pickle', 'wb') as f:
                 pickle.dump(self.email_embeddings, f)

@@ -22,6 +22,9 @@ class Embedding:
 
         :param {str} sentence - A cased or uncased sentence.
         """
+        if sentence == '' or re.match('^\s+$', sentence):
+            return None
+
         try:
             sent = Sentence(sentence)
             self.model.embed(sent)
