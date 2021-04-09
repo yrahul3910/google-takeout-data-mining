@@ -23,6 +23,8 @@ class Embedding:
 
         :param {str} sentence - A cased or uncased sentence.
         """
+        if isinstance(sentence, bytes):
+            sentence = sentence.decode('ascii')
         if sentence == '' or re.match('^\s+$', sentence):
             return None
 
