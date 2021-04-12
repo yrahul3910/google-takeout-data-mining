@@ -2,6 +2,7 @@ from userdata_mining.utils import get_username, debug, info
 from userdata_mining.mining import parse_fit_data
 from userdata_mining.mining import parse_autofill, parse_browser_history
 from userdata_mining.mining import parse_maps_data
+from userdata_mining.mining import parse_maps
 from userdata_mining.mining import parse_mail_data
 from userdata_mining.mining import parse_hangouts_data
 from userdata_mining.mining import parse_mail_data
@@ -11,6 +12,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from dateutil import parser
 import pickle
+import numpy as np
 import pandas as pd
 
 
@@ -68,6 +70,7 @@ class GoogleDataMiner(DataMiner):
         hangouts_data = parse_hangouts_data(
             self.user, data_path=self.data_path)
         mail_data = parse_mail_data(self.user, data_path=self.data_path)
+        maps_places_data = parse_maps(self.user, self.data_path)
 
         info('Data parsed.')
 
@@ -96,11 +99,18 @@ class GoogleDataMiner(DataMiner):
         self.distance_traveled = maps_data['total_distance']
         self.nearby_places_embeddings = [
             embedding.embed(x) for x in maps_data['places']]
+        self.maps_places_embeddings = [
+            embedding.embed(x) for x in maps_places
+        ]
+
+        # Join nearby places with data from Maps (your places)
+        self.nearby_places_embeddings = np.vstack(
+            (self.nearby_places_embeddings, self.maps_places_embeddings))
 
         if hangouts_data is None:
             # Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/hangouts.pickle', 'rb') as f:
-                self.email_embeddings = pickle.load(f)
+                self.messages_embeddings = pickle.load(f)
         else:
             info('Embedding Hangouts data. This may take a while.')
             self.messages_embeddings = [
