@@ -21,6 +21,3 @@ def parse_tv_data(user, data_path='.'):
     item = data['Item Descriptions'].dropna()
     pageDescription = data['Page Details'].dropna()
     return item, pageDescription
-
-
-print(parse_tv_data('madison', '../..'))

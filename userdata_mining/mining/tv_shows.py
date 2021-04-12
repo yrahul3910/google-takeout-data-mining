@@ -12,7 +12,6 @@ def parse_tv_data(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/TV App Favorites and Activity.json'
-    print(path)
     if not os.path.exists(path):
         return []
 

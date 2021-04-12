@@ -19,7 +19,6 @@ def parse_maps(user, data_path='.'):
 
     # Does the directory exist?
     path = f'{data_path}/data/{user}/Reviews.json'
-    print(path)
     if not os.path.exists(path):
         return []
 

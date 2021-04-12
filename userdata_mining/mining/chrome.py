@@ -4,7 +4,7 @@ import googlemaps
 import ast
 
 from userdata_mining.utils import get_key, warn
-from userdata_mining.mining import get_nearby_places
+from userdata_mining.mining.maps import get_nearby_places
 
 
 def parse_autofill(user, data_path='.'):

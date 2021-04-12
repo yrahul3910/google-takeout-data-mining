@@ -20,6 +20,7 @@ def parse_hangouts_data(user, data_path='.'):
     # Does the directory exist?
     path = f'{data_path}/data/{user}/Takeout/Hangouts/Hangouts.json'
     if not os.path.exists(path):
+        warn('Hangouts data path does not exist.')
         return []
 
     with open(path, 'r') as f:
