@@ -64,6 +64,11 @@ class GoogleDataMiner(DataMiner):
     """
 
     def mine_data(self):
+        """
+        Mines all data.
+
+        :return {dict} A dictionary with mined, embedded data
+        """
         fit_data = parse_fit_data(self.user, data_path=self.data_path)
         maps_data = parse_maps_data(self.user, data_path=self.data_path)
         autofill_data = parse_autofill(self.user, data_path=self.data_path)
@@ -166,3 +171,16 @@ class GoogleDataMiner(DataMiner):
              f'YouTube subscriptions: {len(self.yt_subscribed_embeddings)} item(s).\n' +
              f'YouTube liked videos: {len(self.yt_liked_embeddings)} item(s).\n' +
              f'YouTube watch history: {len(self.yt_history_embeddings)} item(s).')
+
+        return {
+            'Autofill': self.autofill_place_embeddings,
+            'Browser History': self.history_embeddings,
+            'Hangouts': self.messages_embeddings,
+            'Travel': self.distance_traveled,
+            'Nearby Places': self.nearby_places_embeddings,
+            'Email': self.email_embeddings,
+            'YouTube comments': self.yt_comments_embeddings,
+            'YouTube subscriptions': self.yt_subscribed_embeddings,
+            'YouTube liked videos': self.yt_liked_embeddings,
+            'YouTube watch history': self.yt_history_embeddings
+        }

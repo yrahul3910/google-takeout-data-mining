@@ -38,6 +38,17 @@ def debug(string: str):
     print(pre + string.replace('\n', '\n' + pre))
 
 
+def error(string: str):
+    """
+    Prints an error message to the terminal.
+
+    :param {str} string - The message to print.
+    """
+    init()
+    pre = Fore.RED + '[ERR] ' + Fore.RESET
+    print(pre + string.replace('\n', '\n' + pre))
+
+
 def get_username(data_path='.'):
     """
     Fetches the user whose data is on disk.
