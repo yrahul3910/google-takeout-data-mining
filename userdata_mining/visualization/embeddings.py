@@ -35,7 +35,18 @@ class EmbeddingVisualizer(Visualizer):
         :param {Iterable} arg - an array-like object
         :return {np.ndarray} embedded object
         """
-        ivis = Ivis(embedding_dims=self.embedding_dims)
+        print(arg.shape)
+        m = arg.shape[0]
+        if m > 200:
+            k = int(0.01 * m)
+        elif m > 50:
+            k = int(0.1 * m)
+        elif m > 10:
+            k = int(0.2 * m)
+        else:
+            k = max(int(0.4 * m), m-3)
+
+        ivis = Ivis(embedding_dims=self.embedding_dims, k=k, batch_size=8)
         return ivis.fit_transform(arg)
 
     def visualize(self, *args, alpha=0.7, reference=None, **fig_kwargs):
@@ -61,6 +72,8 @@ class EmbeddingVisualizer(Visualizer):
         fig, ax = plt.subplots(rows, rows, **fig_kwargs)
 
         for i, arg in enumerate(args):
+            if arg.shape[0] < 10:
+                continue
             # Reduce dimensionality to 2.
             x = self._reduce_dims(arg)
 
@@ -76,3 +89,5 @@ class EmbeddingVisualizer(Visualizer):
             if reference is not None:
                 ax[row][col].scatter(
                     x_ref.T[0], x_ref.T[1], c='r', alpha=alpha)
+
+        plt.show()
