@@ -35,7 +35,6 @@ class EmbeddingVisualizer(Visualizer):
         :param {Iterable} arg - an array-like object
         :return {np.ndarray} embedded object
         """
-        print(arg.shape)
         m = arg.shape[0]
         if m > 200:
             k = int(0.01 * m)
@@ -46,18 +45,25 @@ class EmbeddingVisualizer(Visualizer):
         else:
             k = max(int(0.4 * m), m-3)
 
-        ivis = Ivis(embedding_dims=self.embedding_dims, k=k, batch_size=8)
+        ivis = Ivis(embedding_dims=self.embedding_dims, k=k, batch_size=2)
         return ivis.fit_transform(arg)
 
-    def visualize(self, *args, alpha=0.7, reference=None, **fig_kwargs):
+    def visualize(self, *args, alpha=0.7, titles=None, reference=None, **fig_kwargs):
         """
         Visualizes the data given.
 
         :param *args - Arguments passed to the visualization object
         :param alpha - alpha value for scatterplot
         :param reference - Reference point to plot
+        :param titles - Plot titles
         :param *fig_kwargs - Arguments passed to matplotlib.figure
         """
+        # Sanity check
+        if titles is not None:
+            if len(titles) != len(args):
+                warn('Length of titles does not match args, skipping titles.')
+                titles = None
+
         # How many to embed?
         n_vars = len(args)
 
@@ -70,10 +76,9 @@ class EmbeddingVisualizer(Visualizer):
 
         # Get plots
         fig, ax = plt.subplots(rows, rows, **fig_kwargs)
+        fig.tight_layout()
 
         for i, arg in enumerate(args):
-            if arg.shape[0] < 10:
-                continue
             # Reduce dimensionality to 2.
             x = self._reduce_dims(arg)
 
@@ -85,6 +90,8 @@ class EmbeddingVisualizer(Visualizer):
             col = int(i % 3)
 
             ax[row][col].scatter(x.T[0], x.T[1], c='b', alpha=alpha)
+            if titles is not None:
+                ax[row][col].set_title(titles[i])
 
             if reference is not None:
                 ax[row][col].scatter(
