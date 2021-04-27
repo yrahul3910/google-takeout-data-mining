@@ -75,25 +75,46 @@ class GoogleDataMiner(DataMiner):
         # First, get total distance, total distance in past year,
         # total calories, total calories in past year.
         today = datetime.today()
-        total_distance = sum([x['distance'] for x in fit_data])
-        total_calories = sum([x['calories'] for x in fit_data])
-        total_dist_year = sum([x['distance'] for x in fit_data if parser.parse(
-            max(x['dates'])).replace(tzinfo=None) < today - relativedelta(years=1)])
-        total_cal_year = sum([x['calories'] for x in fit_data if parser.parse(
-            max(x['dates'])).replace(tzinfo=None) < today - relativedelta(years=1)])
+
+        if fit_data:
+            total_distance = sum([x['distance'] for x in fit_data])
+            total_calories = sum([x['calories'] for x in fit_data])
+            total_dist_year = sum([x['distance'] for x in fit_data if parser.parse(
+                max(x['dates'])).replace(tzinfo=None) < today - relativedelta(years=1)])
+            total_cal_year = sum([x['calories'] for x in fit_data if parser.parse(
+                max(x['dates'])).replace(tzinfo=None) < today - relativedelta(years=1)])
+        else:
+            total_distance = 0
+            total_calories = 0
+            total_dist_year = 0
+            total_cal_year = 0
 
         self.mined_fit_data = {
             'total_dist': total_distance,
+
             'total_cal': total_calories,
             'total_dist_yr': total_dist_year,
             'total_cal_yr': total_cal_year
         }
 
         embedding = Embedding(model='bert-base-uncased')
-        self.autofill_place_embeddings = [
-            embedding.embed(x) for x in autofill_data]
-        self.history_embeddings = [embedding.embed(x) for x in browser_data]
-        self.messages_embeddings = [embedding.embed(x) for x in hangouts_data]
+
+        if autofill_data:
+            self.autofill_place_embeddings = [
+                embedding.embed(x) for x in autofill_data]
+        else:
+            self.autofill_place_embeddings = []
+
+        if browser_data:
+            self.history_embeddings = [embedding.embed(x) for x in browser_data]
+        else:
+            self.history_embeddings = []
+
+        if hangouts_data:
+            self.messages_embeddings = [embedding.embed(x) for x in hangouts_data]
+        else:
+            self.messages_embeddings = []
+
         self.distance_traveled = maps_data['total_distance']
         self.nearby_places_embeddings = [
             embedding.embed(x) for x in maps_data['places']]
