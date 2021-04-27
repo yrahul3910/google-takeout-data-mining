@@ -1,0 +1,1 @@
+from userdata_mining.visualization.embeddings import EmbeddingVisualizer

@@ -1,4 +1,5 @@
 .DS_Store
+ivis/
 .idea/
 .env
 .*.cache

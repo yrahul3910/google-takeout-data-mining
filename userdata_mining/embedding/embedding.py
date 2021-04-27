@@ -1,3 +1,4 @@
+import re
 from flair.data import Sentence
 from flair.embeddings import TransformerDocumentEmbeddings
 
@@ -18,10 +19,22 @@ class Embedding:
 
     def embed(self, sentence: str) -> list:
         """
-        Embeds a given sentence.
+        Embeds a given sentence. If it fails, returns None.
 
         :param {str} sentence - A cased or uncased sentence.
         """
-        sent = Sentence(sentence)
-        self.model.embed(sent)
-        return sent.embedding.detach().cpu().numpy()
+        if isinstance(sentence, bytes):
+            sentence = sentence.decode('ascii')
+
+        if isinstance(sentence, list):
+            sentence = ' '.join(sentence)
+
+        if sentence == '':
+            return None
+
+        try:
+            sent = Sentence(sentence)
+            self.model.embed(sent)
+            return sent.embedding.detach().cpu().numpy()
+        except TypeError:
+            return None

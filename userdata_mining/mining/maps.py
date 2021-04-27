@@ -38,17 +38,15 @@ def get_nearby_places(coords):
 
     places = []
     maps_res = client.places_nearby(location=coords,
-                                    radius=1000,
-                                    max_price=2,
-                                    open_now=True)
+                                    radius=3000,
+                                    max_price=2)
 
     token = maps_res.get('next_page_token', None)
     places.extend([x['name'] for x in maps_res['results']])
     while token:
         maps_res = client.places_nearby(location=coords,
-                                        radius=1000,
+                                        radius=3000,
                                         max_price=2,
-                                        open_noew=True,
                                         page_token=token)
         token = maps_res.get('next_page_token', None)
         places.extend(maps_res['results'])
