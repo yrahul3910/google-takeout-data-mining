@@ -114,7 +114,6 @@ class GoogleDataMiner(DataMiner):
 
         info('Embedding text data. This may take a while.')
         embedding = Embedding(model='bert-base-uncased')
-<<<<<<< HEAD
 
         if autofill_data:
             self.autofill_place_embeddings = [
@@ -123,20 +122,17 @@ class GoogleDataMiner(DataMiner):
             self.autofill_place_embeddings = []
 
         if browser_data:
-            self.history_embeddings = [embedding.embed(x) for x in browser_data]
+            self.history_embeddings = [
+                embedding.embed(x) for x in browser_data]
         else:
             self.history_embeddings = []
 
         if hangouts_data:
-            self.messages_embeddings = [embedding.embed(x) for x in hangouts_data]
+            self.messages_embeddings = [
+                embedding.embed(x) for x in hangouts_data]
         else:
             self.messages_embeddings = []
 
-=======
-        self.autofill_place_embeddings = [
-            embedding.embed(x) for x in autofill_data]
-        self.history_embeddings = [embedding.embed(x) for x in browser_data]
->>>>>>> 3a38947fd69e9040fa2788fd758fcf05dfb1f7db
         self.distance_traveled = maps_data['total_distance']
         self.nearby_places_embeddings = [
             embedding.embed(x) for x in maps_data['places']]
