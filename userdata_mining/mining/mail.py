@@ -33,8 +33,11 @@ def postprocess(text: str) -> str:
     text = text.encode('ascii', 'ignore').decode()
     text = re.sub('http\S+', '', text, flags=re.MULTILINE)
     s = MLStripper()
-    s.feed(text)
-    return " ".join(re.findall("[a-zA-Z]+", s.get_data()))
+    try:
+        s.feed(text)
+        return " ".join(re.findall("[a-zA-Z]+", s.get_data()))
+    except:
+        return ""
 
 
 def get_html_text(html):

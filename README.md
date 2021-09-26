@@ -11,7 +11,11 @@ Go to [Google Takeout](https://takeout.google.com) and request a copy of your da
 * Search contributions
 * YouTube and YouTube Music
 
-Download the files. In the YouTube and YouTube Music folder, delete the videos and uploads folders. This saves disk space. Put the `Takeout` folder in a directory called `data/<name>`, so that the directory structure is `data/<user>/Takeout`. Also make a directory called `caches/` to store the caches.
+Download the files. In the YouTube and YouTube Music folder, delete the videos and uploads folders. This saves disk space. Put the `Takeout` folder in a directory called `data/<name>`, so that the directory structure is `data/<user>/Takeout`. Then, run
+
+```sh
+mkdir -p saved/embeddings caches
+```
 
 # Setting up the code
 
