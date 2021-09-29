@@ -11,7 +11,11 @@ Go to [Google Takeout](https://takeout.google.com) and request a copy of your da
 * Search contributions
 * YouTube and YouTube Music
 
-Download the files. In the YouTube and YouTube Music folder, delete the videos and uploads folders. This saves disk space. Put the `Takeout` folder in a directory called `data/<name>`, so that the directory structure is `data/<user>/Takeout`. Also make a directory called `caches/` to store the caches.
+Download the files. In the YouTube and YouTube Music folder, delete the videos and uploads folders. This saves disk space. Put the `Takeout` folder in a directory called `data/<name>`, so that the directory structure is `data/<user>/Takeout`. Then, run
+
+```sh
+mkdir -p saved/embeddings caches
+```
 
 # Setting up the code
 
@@ -21,13 +25,14 @@ Download the files. In the YouTube and YouTube Music folder, delete the videos a
     3. Restrict your API key. Click on your newly generated key, and under API Restrictions, select Restrict Key. In the search box, type in "Distance Matrix API", "Places API", "YouTube Data API v3", and "Geocoding API". Restrict the key to these APIs.
 2. **Set up Google Cloud billing.** You may need to set up your Google Cloud account with billing information. You can do so in the Billing section of the sidebar.
 3. **Create a .env file.** This will hide your API key. **DO NOT COMMIT THIS FILE.** If you do, anyone will be able to access the APIs and you will be billed for it. If you're feeling altruistic, donate instead. In this file, add in one line, `KEY=<your API key>`.
-4. **Install the requirements.** Run `python3 -m pip install -r requirements.txt` to do this.
-5. **Install the ivis dependency.** The ivis package on `pypi` has a bug that is fixed in their repository. Install it as follows:
+4. **Ensure pip is updated.** Run `pip3 install --upgrade pip` to do this.
+5. **Install the requirements.** Run `python3 -m pip install -r requirements.txt` to do this.
+6. **Install the ivis dependency.** The ivis package on `pypi` has a bug that is fixed in their repository. Install it as follows:
 ```
 git clone https://github.com/beringresearch/ivis.git
 cd ivis && python3 -m pip install -e .
 ```
-6. **Run the code.** Run `python3 main.py`
+7. **Run the code.** Run `python3 main.py`
 
 You should now be able to run the code.
 
