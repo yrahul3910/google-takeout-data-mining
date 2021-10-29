@@ -45,4 +45,6 @@ def parse_play_data(user, library_type, data_path='.'):
             title = doc['title']
             titles.append(str.split(doc['title'], '.')[2]) if title.startsWith('com.') else titles.append(title)
 
+    f.close()
+
     return titles
