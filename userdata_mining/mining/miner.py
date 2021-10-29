@@ -9,6 +9,7 @@ from userdata_mining.mining import parse_mail_data
 from userdata_mining.mining import parse_yt_comments, parse_yt_watch_history
 from userdata_mining.mining import parse_subscribed_channels, parse_liked_videos
 from userdata_mining.mining import parse_chats_data
+from userdata_mining.mining import parse_play_data
 from userdata_mining.embedding import Embedding
 from abc import ABC
 from datetime import datetime
@@ -85,6 +86,8 @@ class GoogleDataMiner(DataMiner):
             self.user, self.data_path)
         yt_liked_data = parse_liked_videos(self.user, self.data_path)
         chats_data = parse_chats_data(self.user, self.data_path)
+        movies_data = parse_play_data(self.user, 'movies', self.data_path)
+        apps_data = parse_play_data(self.user, 'apps', self.data_path)
 
         info('Data parsed.')
 
@@ -116,6 +119,16 @@ class GoogleDataMiner(DataMiner):
 
         info('Embedding text data. This may take a while.')
         embedding = Embedding(model='bert-base-uncased')
+
+        if apps_data:
+            self.apps_embeddings = [
+                embedding.embed(x) for x in apps_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
 
         if autofill_data:
             self.autofill_place_embeddings = [
@@ -149,6 +162,17 @@ class GoogleDataMiner(DataMiner):
         else:
             self.chats_embeddings = []
 
+        if movies_data:
+            info('Embedding Google Play Movies data. This may take a while.')
+            self.movies_embeddings = [
+                embedding.embed(x) for x in movies_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/movies.pickle', 'wb') as f:
+                pickle.dump(self.movies_embeddings, f)
+        else:
+            self.movies_embeddings = []
+
         self.distance_traveled = maps_data['total_distance']
         self.nearby_places_embeddings = [
             embedding.embed(x) for x in maps_data['places']]
@@ -172,6 +196,11 @@ class GoogleDataMiner(DataMiner):
         self.nearby_places_embeddings = np.vstack(
             (self.nearby_places_embeddings, self.maps_places_embeddings))
 
+        if apps_data is None:
+            #Load cached embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'rb') as f:
+                self.apps_embeddings = pickle.load(f)
+
         if chats_data is None:
             # Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/chat.pkl', 'rb') as f:
@@ -186,6 +215,12 @@ class GoogleDataMiner(DataMiner):
             # Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/mail.pickle', 'rb') as f:
                 self.email_embeddings = pickle.load(f)
+
+        if movies_data is None:
+            #Load cached embeddings
+            with open(f'{self.data_path}/saved/embeddings/movies.pickle', 'rb') as f:
+                self.movies_embeddings = pickle.load(f)
+
         else:
             info('Embedding email data. This may take a while.')
             self.email_embeddings = [embedding.embed(x) for x in mail_data]
@@ -196,6 +231,7 @@ class GoogleDataMiner(DataMiner):
                 pickle.dump(self.email_embeddings, f)
 
         info(f'Embedding complete. Data details:\n' +
+             f'Apps: {len(self.apps_embeddings)} item(s).\n' +
              f'Autofill: {len(self.autofill_place_embeddings)} item(s).\n' +
              f'Browser history: {len(self.history_embeddings)} item(s).\n' +
              f'Hangouts: {len(self.messages_embeddings)} item(s).\n' +
@@ -203,12 +239,14 @@ class GoogleDataMiner(DataMiner):
              f'Monthly travel estimate: {self.distance_traveled} km.\n' +
              f'Nearby places: {len(self.nearby_places_embeddings)} item(s).\n' +
              f'Email: {len(self.email_embeddings)} item(s).\n' +
+             f'Movies: {len(self.movies_embeddings)} item(s). \n' +
              f'YouTube comments: {len(self.yt_comments_embeddings)} item(s).\n' +
              f'YouTube subscriptions: {len(self.yt_subscribed_embeddings)} item(s).\n' +
              f'YouTube liked videos: {len(self.yt_liked_embeddings)} item(s).\n' +
              f'YouTube watch history: {len(self.yt_history_embeddings)} item(s).')
 
         return {
+            'Apps': self.apps_embeddings,
             'Autofill': self.autofill_place_embeddings,
             'Browser History': self.history_embeddings,
             'Chat': self.chats_embeddings,
@@ -216,6 +254,7 @@ class GoogleDataMiner(DataMiner):
             'Travel': self.distance_traveled,
             'Nearby Places': self.nearby_places_embeddings,
             'Email': self.email_embeddings,
+            'Movies': self.movies_embeddings,
             'YouTube comments': self.yt_comments_embeddings,
             'YouTube subscriptions': self.yt_subscribed_embeddings,
             'YouTube liked videos': self.yt_liked_embeddings,
