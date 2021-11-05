@@ -11,3 +11,4 @@ from userdata_mining.mining.youtube import *
 from userdata_mining.mining.miner import *
 from userdata_mining.mining.google_chat import *
 from userdata_mining.mining.google_play import *
+from userdata_mining.mining.google_pay import *

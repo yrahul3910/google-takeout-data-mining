@@ -10,6 +10,7 @@ from userdata_mining.mining import parse_yt_comments, parse_yt_watch_history
 from userdata_mining.mining import parse_subscribed_channels, parse_liked_videos
 from userdata_mining.mining import parse_chats_data
 from userdata_mining.mining import parse_play_data
+from userdata_mining.mining import parse_pay_data
 from userdata_mining.embedding import Embedding
 from abc import ABC
 from datetime import datetime
@@ -88,6 +89,7 @@ class GoogleDataMiner(DataMiner):
         chats_data = parse_chats_data(self.user, self.data_path)
         movies_data = parse_play_data(self.user, 'movies', self.data_path)
         apps_data = parse_play_data(self.user, 'apps', self.data_path)
+        transactions_data = parse_pay_data(self.user, self.data_path)
 
         info('Data parsed.')
 
@@ -173,6 +175,17 @@ class GoogleDataMiner(DataMiner):
         else:
             self.movies_embeddings = []
 
+        if transactions_data:
+            info('Embedding Google Pay transaction data. This may take a while.')
+            self.transactions_embeddings = [
+                embedding.embed(x) for x in transactions_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/pay.pickle', 'wb') as f:
+                pickle.dump(self.transactions_embeddings, f)
+        else:
+            self.transactions_embeddings = []
+
         self.distance_traveled = maps_data['total_distance']
         self.nearby_places_embeddings = [
             embedding.embed(x) for x in maps_data['places']]
@@ -217,9 +230,14 @@ class GoogleDataMiner(DataMiner):
                 self.email_embeddings = pickle.load(f)
 
         if movies_data is None:
-            #Load cached embeddings
+            # Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/movies.pickle', 'rb') as f:
                 self.movies_embeddings = pickle.load(f)
+
+        if transactions_data is None:
+            # Load cached embeddings
+            with open(f'{self.data_path}/saved/embeddings/pay.pickle', 'rb') as f:
+                self.transactions_embeddings = pickle.load(f)
 
         else:
             info('Embedding email data. This may take a while.')
@@ -236,6 +254,7 @@ class GoogleDataMiner(DataMiner):
              f'Browser history: {len(self.history_embeddings)} item(s).\n' +
              f'Hangouts: {len(self.messages_embeddings)} item(s).\n' +
              f'Google Chat: {len(self.chats_embeddings)} item(s).\n' +
+             f'Google Pay Transactions: {len(self.transactions_embeddings)} item(s).\n' +
              f'Monthly travel estimate: {self.distance_traveled} km.\n' +
              f'Nearby places: {len(self.nearby_places_embeddings)} item(s).\n' +
              f'Email: {len(self.email_embeddings)} item(s).\n' +
@@ -255,6 +274,7 @@ class GoogleDataMiner(DataMiner):
             'Nearby Places': self.nearby_places_embeddings,
             'Email': self.email_embeddings,
             'Movies': self.movies_embeddings,
+            'Pay Transactions': self.transactions_embeddings,
             'YouTube comments': self.yt_comments_embeddings,
             'YouTube subscriptions': self.yt_subscribed_embeddings,
             'YouTube liked videos': self.yt_liked_embeddings,
