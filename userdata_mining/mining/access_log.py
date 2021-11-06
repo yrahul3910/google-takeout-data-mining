@@ -32,7 +32,7 @@ def parse_access_log_data(user, data_path='.'):
         with open(file, 'r') as f:
             read = csv.reader(f)
             for r in read:
-                if r is not None and len(r) > 0 and r[2] != '' and r[2] != 'Product Name' and r[2] != 'Other':
+                if r is not None and len(r) > 0 and r[2] != '' and r[2] != 'IP Address':
                     activities.add(r[2])
 
     return list(activities)
