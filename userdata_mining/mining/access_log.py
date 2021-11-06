@@ -13,7 +13,7 @@ def parse_access_log_data(user, data_path='.'):
         data_path (str): The path to the data.
 
     Returns:
-        list: A list of Google services accessed by the user
+        list: A list of IP addresses used to access Google services by the user
     """
     # First, check for cache
     if os.path.exists(f'{data_path}/saved/embeddings/access.pickle'):
