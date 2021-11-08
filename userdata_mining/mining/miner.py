@@ -11,6 +11,34 @@ from userdata_mining.mining import parse_subscribed_channels, parse_liked_videos
 from userdata_mining.mining import parse_chats_data
 from userdata_mining.mining import parse_play_data
 from userdata_mining.embedding import Embedding
+from userdata_mining.mining import parse_insta_ads_viewed
+from userdata_mining.mining import parse_insta_music_heard
+from userdata_mining.mining import parse_insta_videos_watched
+from userdata_mining.mining import parse_insta_ads_interest
+from userdata_mining.mining import parse_insta_your_topics
+from userdata_mining.mining import parse_insta_your_reels_topics
+from userdata_mining.mining import parse_insta_your_reels_sentiments
+from userdata_mining.mining import parse_insta_saved_posts
+from userdata_mining.mining import parse_insta_account_searches
+from userdata_mining.mining import parse_insta_monetization_eligibility
+from userdata_mining.mining import parse_insta_liked_comments
+from userdata_mining.mining import parse_insta_liked_posts
+from userdata_mining.mining import parse_insta_post_comments
+from userdata_mining.mining import parse_insta_information_submitted
+from userdata_mining.mining import parse_insta_posts_viewed
+from userdata_mining.mining import parse_insta_suggested_accounts_viewed
+from userdata_mining.mining import parse_insta_account_based_in
+from userdata_mining.mining import parse_insta_comments_allowed_from
+from userdata_mining.mining import parse_insta_use_cross_app_messaging
+from userdata_mining.mining import parse_insta_emoji_sliders
+from userdata_mining.mining import parse_insta_polls
+from userdata_mining.mining import parse_insta_quizzes
+from userdata_mining.mining import parse_insta_archived_posts
+from userdata_mining.mining import parse_insta_stories
+from userdata_mining.mining import parse_insta_followers
+from userdata_mining.mining import parse_insta_following
+from userdata_mining.mining import parse_insta_hide_story_from
+from userdata_mining.mining import parse_insta_messages
 from abc import ABC
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
@@ -59,6 +87,500 @@ class DataMiner(ABC):
     def mine_data(self, data_path='.'):
         return NotImplemented
 
+
+class FbInstaDataMiner(DataMiner):
+    """
+    Mines Instagram data.
+    """
+    
+    def mine_data(self):
+        """
+        Mines all data of Instagram and Facebook
+        
+        :return {dict} A dictonary with mined, embedded data
+        """
+        ads_data = parse_insta_ads_viewed(self.user, data_path=self.data_path)
+        music_heard_data = parse_insta_music_heard(self.user, data_path=self.data_path)
+        videos_watched_data = parse_insta_videos_watched(self.user, data_path=self.data_path)
+        ads_interest_data = parse_insta_ads_interest(self.user, data_path=self.data_path)
+        your_topics_data = parse_insta_your_topics(self.user, data_path=self.data_path)
+        reels_topics_data = parse_insta_your_reels_topics(self.user, data_path=self.data_path)
+        reels_sentiments_data = parse_insta_your_reels_sentiments(self.user, data_path=self.data_path)
+        saved_posts_data = parse_insta_saved_posts(self.user, data_path=self.data_path)
+        account_searches_data = parse_insta_account_searches(self.user, data_path=self.data_path)
+        memo_data = parse_insta_monetization_eligibility(self.user, data_path=self.data_path)
+        liked_comments_data = parse_insta_liked_comments(self.user, data_path=self.data_path)
+        liked_posts_data = parse_insta_liked_posts(self.user, data_path=self.data_path)
+        post_comments_data = parse_insta_post_comments(self.user, data_path=self.data_path)
+        info_submitted_data = parse_insta_information_submitted(self.user, data_path=self.data_path)
+        posts_viewed_data = parse_insta_posts_viewed(self.user, data_path=self.data_path)
+        accounts_viewed_data = parse_insta_suggested_accounts_viewed(self.user, data_path=self.data_path)
+        accounts_based_in_data = parse_insta_account_based_in(self.user, data_path=self.data_path)
+        comments_data = parse_insta_comments_allowed_from(self.user, data_path=self.data_path)
+        cross_app_data = parse_insta_use_cross_app_messaging(self.user, data_path=self.data_path)
+        emojis_data = parse_insta_emoji_sliders(self.user, data_path=self.data_path)
+        polls_data = parse_insta_polls(self.user, data_path=self.data_path)
+        quizzes_data = parse_insta_quizzes(self.user, data_path=self.data_path)
+        archieved_posts_data = parse_insta_archived_posts(self.user, data_path=self.data_path)
+        stories_data = parse_insta_stories(self.user, data_path=self.data_path)
+        followers_data = parse_insta_followers(self.user, data_path=self.data_path)
+        following_data = parse_insta_following(self.user, data_path=self.data_path)
+        hide_story_data = parse_insta_hide_story_from(self.user, data_path=self.data_path)
+        messages_data = parse_insta_messages(self.user, data_path=self.data_path)
+        
+        info('Data parsed.')
+        
+        info('Embedding text data. This may take a while.')
+        embedding = Embedding(model='bert-base-uncased')
+        
+         if ads_data:
+            self.ads_data = [
+                embedding.embed(x) for x in ads_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+            
+        if music_heard_data:
+            self.music_heard_data = [
+                embedding.embed(x) for x in music_heard_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+            
+        if videos_watched_data:
+            self.videos_watched_data = [
+                embedding.embed(x) for x in videos_watched_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+        
+        if ads_interest_data:
+            self.ads_interest_data = [
+                embedding.embed(x) for x in ads_interest_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if your_topics_data:
+            self.your_topics_data = [
+                embedding.embed(x) for x in your_topics_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+            
+        if reels_topics_data:
+            self.reels_topics_data = [
+                embedding.embed(x) for x in reels_topics_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+            
+        if reels_sentiments_data:
+            self.reels_sentiments_data = [
+                embedding.embed(x) for x in reels_sentiments_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+        
+        if saved_posts_data:
+            self.saved_posts_data = [
+                embedding.embed(x) for x in saved_posts_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+            
+        if account_searches_data:
+            self.account_searches_data = [
+                embedding.embed(x) for x in account_searches_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+    
+        if memo_data:
+            self.memo_data = [
+                embedding.embed(x) for x in memo_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+        
+        if liked_comments_data:
+            self.liked_comments_data = [
+                embedding.embed(x) for x in liked_comments_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+        
+        if liked_posts_data:
+            self.liked_posts_data = [
+                embedding.embed(x) for x in liked_posts_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if post_comments_data:
+            self.post_comments_data = [
+                embedding.embed(x) for x in post_comments_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if info_submitted_data:
+            self.info_submitted_data = [
+                embedding.embed(x) for x in info_submitted_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if posts_viewed_data:
+            self.posts_viewed_data = [
+                embedding.embed(x) for x in posts_viewed_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if accounts_viewed_data:
+            self.accounts_viewed_data = [
+                embedding.embed(x) for x in accounts_viewed_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if accounts_based_in_data:
+            self.accounts_based_in_data = [
+                embedding.embed(x) for x in accounts_based_in_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if comments_data:
+            self.comments_data = [
+                embedding.embed(x) for x in comments_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if cross_app_data:
+            self.cross_app_data = [
+                embedding.embed(x) for x in cross_app_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if emojis_data:
+            self.emojis_data = [
+                embedding.embed(x) for x in emojis_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if polls_data:
+            self.polls_data = [
+                embedding.embed(x) for x in polls_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if quizzes_data:
+            self.quizzes_data = [
+                embedding.embed(x) for x in quizzes_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if archieved_posts_data:
+            self.archieved_posts_data = [
+                embedding.embed(x) for x in archieved_posts_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if stories_data:
+            self.stories_data = [
+                embedding.embed(x) for x in stories_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if followers_data:
+            self.followers_data = [
+                embedding.embed(x) for x in followers_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+
+        if following_data:
+            self.following_data = [
+                embedding.embed(x) for x in following_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if hide_story_data:
+            self.hide_story_data = [
+                embedding.embed(x) for x in hide_story_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if messages_data:
+            self.messages_data = [
+                embedding.embed(x) for x in messages_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+            
+            
+        fb_ads_data = parse_fb_advitisors(self.user, data_path=self.data_path)
+        fb_apps_data = parse_fb_apps_and_websites(self.user, data_path=self.data_path)
+        fb_posts_apps_data = parse_fb_posts_from_apps_and_websites(self.user, data_path=self.data_path)
+        fb_your_topics_data = parse_fb_your_topics(self.user, data_path=self.data_path)
+        fb_comments_data = parse_fb_comments(self.user, data_path=self.data_path)
+        fb_reactions_data = parse_fb_reactions(self.user, data_path=self.data_path)
+        fb_search_historydata = parse_fb_search_history(self.user, data_path=self.data_path)
+        fb_saved_posts_data = parse_fb_pages_you_follow(self.user, data_path=self.data_path)
+        fb_pages_you_follow_data = parse_fb_pages_you_liked(self.user, data_path=self.data_path)
+        fb_ads_interest_data = parse_fb_ads_interest(self.user, data_path=self.data_path)
+        fb_frnd_peer_group_data = parse_fb_frnd_peer_group(self.user, data_path=self.data_path)
+        fb_groups_comments_data = parse_fb_groups_comments(self.user, data_path=self.data_path)
+        fb_groups_membership_data = parse_fb_groups_membership(self.user, data_path=self.data_path)
+        fb_groups_posts_data = parse_fb_groups_posts(self.user, data_path=self.data_path)
+        fb_messages_data = parse_fb_messages(self.user, data_path=self.data_path)
+
+        if fb_ads_data:
+            self.fb_ads_data = [
+                embedding.embed(x) for x in fb_ads_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if fb_apps_data:
+            self.fb_apps_data = [
+                embedding.embed(x) for x in fb_apps_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if fb_posts_apps_data:
+            self.fb_posts_apps_data = [
+                embedding.embed(x) for x in fb_posts_apps_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if fb_your_topics_data:
+            self.fb_your_topics_data = [
+                embedding.embed(x) for x in fb_your_topics_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if fb_comments_data:
+            self.fb_comments_data = [
+                embedding.embed(x) for x in fb_comments_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if fb_reactions_data:
+            self.fb_reactions_data = [
+                embedding.embed(x) for x in fb_reactions_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if fb_search_historydata:
+            self.fb_search_historydata = [
+                embedding.embed(x) for x in fb_search_historydata]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if fb_saved_posts_data:
+            self.fb_saved_posts_data = [
+                embedding.embed(x) for x in fb_saved_posts_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if fb_pages_you_follow_data:
+            self.fb_pages_you_follow_data = [
+                embedding.embed(x) for x in fb_pages_you_follow_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if fb_ads_interest_data:
+            self.fb_ads_interest_data = [
+                embedding.embed(x) for x in fb_ads_interest_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if fb_frnd_peer_group_data:
+            self.fb_frnd_peer_group_data = [
+                embedding.embed(x) for x in fb_frnd_peer_group_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if fb_groups_comments_data:
+            self.fb_groups_comments_data = [
+                embedding.embed(x) for x in fb_groups_comments_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+
+        if fb_groups_membership_data:
+            self.fb_groups_membership_data = [
+                embedding.embed(x) for x in fb_groups_membership_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if fb_groups_posts_data:
+            self.fb_groups_posts_data = [
+                embedding.embed(x) for x in fb_groups_posts_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
+
+        if fb_messages_data:
+            self.fb_messages_data = [
+                embedding.embed(x) for x in fb_messages_data]
+
+            # Cache embeddings
+            with open(f'{self.data_path}/saved/embeddings/apps.pickle', 'wb') as f:
+                pickle.dump(self.apps_embeddings, f)
+        else:
+            self.apps_embeddings = []
 
 class GoogleDataMiner(DataMiner):
     """
