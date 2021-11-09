@@ -581,6 +581,54 @@ class FbInstaDataMiner(DataMiner):
                 pickle.dump(self.apps_embeddings, f)
         else:
             self.apps_embeddings = []
+            
+        return {
+            'Insta Advertisements Data': self.ads_data,
+            'Insta Music heard': self.music_heard_data,
+            'Insta Videos watched': self.videos_watched_data,
+            'Insta Interests': self.ads_interest_data,
+            'Insta Topics': self.your_topics_data,
+            'Insta Reels Topics': self.reels_topics_data,
+            'Insta Reels Sentiments': self.reels_sentiments_data,
+            'Insta Posts Saved': self.saved_posts_data,
+            'Insta Account Searches': self.account_searches_data,
+            'Insta Memo Data': self.memo_data,
+            'Insta Liked Comments': self.liked_comments_data,
+            'Insta Liked Posts': self.liked_posts_data,
+            'Insta Post Comments': self.post_comments_data,
+            'Insta Information Submitted': self.info_submitted_data,
+            'Insta Posts viewed': self.posts_viewed_data,
+            'Insta Accounts Viewwed': self.accounts_viewed_data,
+            'Insta Accounts based': self.accounts_based_in_data,
+            'Insta Comments': self.comments_data,
+            'Insta Cross App Data': self.cross_app_data,
+            'Insta Emojis': self.emojis_data,
+            'Insta Polls': self.polls_data,
+            'Insta Quizzes': self.quizzes_data,
+            'Insta Archieved Posts': self.archieved_posts_data,
+            'Insta Stories': self.stories_data,
+            'Insta Followers': self.followers_data,
+            'Insta Following': self.following_data,
+            'Insta Hided story': self.hide_story_data,
+            'Insta Messages': self.messages_data,
+            'FB Advertisements': self.fb_ads_data,
+            'FB Apps': self.fb_apps_data,
+            'FB Posts Apps': self.fb_posts_apps_data,
+            'FB Topics': self.fb_your_topics_data,
+            'FB Comments': self.fb_comments_data,
+            'FB Reactions': self.fb_reactions_data,
+            'FB Search History': self.fb_search_historydata,
+            'FB Saved posts': self.fb_saved_posts_data,
+            'FB Pages followed': self.fb_pages_you_follow_data,
+            'FB Ad interests': self.fb_ads_interest_data,
+            'FB Friend peer group': self.fb_frnd_peer_group_data,
+            'FB Group comments': self.fb_groups_comments_data,
+            'FB Group membership': self.fb_groups_membership_data,
+            'FB Group posts': self.fb_groups_posts_data,
+            'FB Messages': self.fb_messages_data
+        }
+        
+        
 
 class GoogleDataMiner(DataMiner):
     """
