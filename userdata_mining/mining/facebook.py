@@ -8,7 +8,7 @@ def parse_fb_advitisors(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} advertisers who uplaoded a contact list with your information
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/facebook/ads_information/advertisers_who_uploaded_a_contact_list_with_your_information.json'
@@ -55,7 +55,7 @@ def parse_fb_posts_from_apps_and_websites(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} apps and websotes of facebook user used
+    :return {list} posts from apps and websotes of facebook user used
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/facebook/apps_and_websites_off_of_facebook/posts_from_apps_and_websites.json'
@@ -103,7 +103,7 @@ def parse_fb_comments(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} apps and websotes of facebook user used
+    :return {list} comments you posted on posts
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/facebook/comments_and_reactions/comments.json'
@@ -130,7 +130,7 @@ def parse_fb_reactions(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} apps and websotes of facebook user used
+    :return {list} reactions on different posts
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/facebook/comments_and_reactions/posts_and_comments.json'
@@ -154,7 +154,7 @@ def parse_fb_search_history(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} apps and websotes of facebook user used
+    :return {list} facebook search history
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/facebook/search/your_search_history.json'
@@ -180,7 +180,7 @@ def parse_fb_pages_you_follow(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} apps and websotes of facebook user used
+    :return {list} list of pages you follow on FB
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/facebook/pages/pages_you_follow.json'
@@ -206,7 +206,7 @@ def parse_fb_pages_you_liked(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} apps and websotes of facebook user used
+    :return {list} pages you liked on FB
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/facebook/pages/pages_you\'ve_liked.json'
@@ -230,7 +230,7 @@ def parse_fb_ads_interest(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} apps and websotes of facebook user used
+    :return {list} List of your ad interests
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/facebook/other_logged_information/ads_interests.json'
@@ -254,7 +254,7 @@ def parse_fb_frnd_peer_group(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} apps and websotes of facebook user used
+    :return {list} list of your friend peer groups
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/facebook/other_logged_information/friend_peer_group.json'
@@ -278,7 +278,7 @@ def parse_fb_groups_comments(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} apps and websotes of facebook user used
+    :return {list} list of fb groups comments
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/facebook/groups/your_comments_in_groups.json'
@@ -302,7 +302,7 @@ def parse_fb_groups_membership(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} apps and websotes of facebook user used
+    :return {list}list of groups you are member in
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/facebook/groups/your_group_membership_activity.json'
@@ -326,7 +326,7 @@ def parse_fb_groups_posts(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} apps and websotes of facebook user used
+    :return {list} group posts
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/facebook/groups/your_posts_in_groups.json'
@@ -351,7 +351,7 @@ def parse_fb_messages(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} parses entire messages sent and recieved by you thorugh fb chat
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/facebook/messages/inbox'

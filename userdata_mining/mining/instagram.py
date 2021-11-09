@@ -8,7 +8,7 @@ def parse_insta_ads_viewed(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} ads viewed on instagram
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/ads_and_content/ads_viewed.json'
@@ -34,7 +34,7 @@ def parse_insta_music_heard(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} music you heard in instagram advertisements
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/ads_and_content/music_heard_in_stories.json'
@@ -60,7 +60,7 @@ def parse_insta_videos_watched(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} videos you watched in instagram
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/ads_and_content/videos_watched.json'
@@ -86,7 +86,7 @@ def parse_insta_ads_interest(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} your ad interest information created by instagarm
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/information_about_you/ads_interests.json'
@@ -112,7 +112,7 @@ def parse_insta_your_topics(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} your topics shortlisted by instagarm
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/your_topics/your_topics.json'
@@ -138,7 +138,7 @@ def parse_insta_your_reels_topics(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} topics of your most watched reels
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/your_topics/your_reels_topics.json'
@@ -164,7 +164,7 @@ def parse_insta_your_reels_sentiments(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} list of sentiments based on reels you watched on instagram
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/your_topics/your_reels_topics.json'
@@ -190,7 +190,7 @@ def parse_insta_saved_posts(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} posts you saved in instagram
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/saved/saved_posts.json'
@@ -216,7 +216,7 @@ def parse_insta_account_searches(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} list of accounts you searched in instagram
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/recent_searches/account_searches.json'
@@ -242,7 +242,7 @@ def parse_insta_monetization_eligibility(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} monetization eligibility
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/monetization/eligibility.json'
@@ -268,7 +268,7 @@ def parse_insta_liked_comments(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} comments you liked in insatgram 
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/likes/liked_comments.json'
@@ -294,7 +294,7 @@ def parse_insta_liked_posts(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} posts you liked in instagram
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/likes/liked_posts.json'
@@ -320,7 +320,7 @@ def parse_insta_post_comments(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} comments you posted on instagram
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/comments/post_comments.json'
@@ -346,7 +346,7 @@ def parse_insta_information_submitted(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} information you have submitted to advertisers in instagram
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/ads_and_businesses/information_you\'ve_submitted_to_advertisers.json'
@@ -373,7 +373,7 @@ def parse_insta_posts_viewed(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} posts viewed on instagram
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/ads_and_content/posts_viewed.json'
@@ -399,7 +399,7 @@ def parse_insta_suggested_accounts_viewed(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} accounts you viewed on instagram based on instagram suggestions 
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/ads_and_content/suggested_accounts_viewed.json'
@@ -425,7 +425,7 @@ def parse_insta_account_based_in(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} information about you based on insta accounts
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/information_about_you/account_based_in.json'
@@ -451,7 +451,7 @@ def parse_insta_comments_allowed_from(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} permission of comments
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/comments_settings/comments_allowed_from.json'
@@ -477,7 +477,7 @@ def parse_insta_use_cross_app_messaging(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} permissions to use cross app messaging
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/comments_settings/use_cross-app_messaging.json'
@@ -503,7 +503,7 @@ def parse_insta_emoji_sliders(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} infromation about insta emoji sliders
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/story_sticker_interactions/emoji_sliders.json'
@@ -529,7 +529,7 @@ def parse_insta_polls(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} insta polls you participated
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/story_sticker_interactions/polls.json'
@@ -555,7 +555,7 @@ def parse_insta_quizzes(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} infromation of quizzes you participated in instagram
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/story_sticker_interactions/quizzes.json'
@@ -581,7 +581,7 @@ def parse_insta_archived_posts(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} posts you archieved in instagram
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/content/archived_posts.json'
@@ -607,7 +607,7 @@ def parse_insta_stories(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} stories you posted in instagram
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/content/stories.json'
@@ -633,7 +633,7 @@ def parse_insta_followers(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} followers of instagram
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/followers_and_following/followers.json'
@@ -661,7 +661,7 @@ def parse_insta_following(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} people and pages following in instagram
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/followers_and_following/following.json'
@@ -691,7 +691,7 @@ def parse_insta_hide_story_from(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} list of people you are hiding stories from 
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/followers_and_following/hide_story_from.json'
@@ -719,7 +719,7 @@ def parse_insta_messages(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} advertisers who uplaoded a contact list with oyur information
+    :return {list} parses entire messages sent and recieved by you thorugh fb chat
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/messages/inbox'
