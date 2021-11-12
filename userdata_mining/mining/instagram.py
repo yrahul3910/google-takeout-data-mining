@@ -12,7 +12,6 @@ def parse_insta_ads_viewed(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/ads_and_content/ads_viewed.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/ads_and_content/ads_viewed.json'
     if not os.path.exists(path):
         return []
 
@@ -38,7 +37,6 @@ def parse_insta_music_heard(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/ads_and_content/music_heard_in_stories.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/ads_and_content/music_heard_in_stories.json'
     if not os.path.exists(path):
         return []
 
@@ -64,7 +62,6 @@ def parse_insta_videos_watched(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/ads_and_content/videos_watched.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/ads_and_content/videos_watched.json'
     if not os.path.exists(path):
         return []
 
@@ -90,7 +87,6 @@ def parse_insta_ads_interest(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/information_about_you/ads_interests.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/information_about_you/ads_interests.json'
     if not os.path.exists(path):
         return []
 
@@ -116,7 +112,6 @@ def parse_insta_your_topics(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/your_topics/your_topics.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/your_topics/your_topics.json'
     if not os.path.exists(path):
         return []
 
@@ -142,7 +137,6 @@ def parse_insta_your_reels_topics(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/your_topics/your_reels_topics.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/your_topics/your_reels_topics.json'
     if not os.path.exists(path):
         return []
 
@@ -168,7 +162,6 @@ def parse_insta_your_reels_sentiments(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/your_topics/your_reels_topics.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/your_topics/your_reels_sentiments.json'
     if not os.path.exists(path):
         return []
 
@@ -194,7 +187,6 @@ def parse_insta_saved_posts(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/saved/saved_posts.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/saved/saved_posts.json'
     if not os.path.exists(path):
         return []
 
@@ -220,7 +212,6 @@ def parse_insta_account_searches(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/recent_searches/account_searches.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/recent_searches/account_searches.json'
     if not os.path.exists(path):
         return []
 
@@ -246,7 +237,6 @@ def parse_insta_monetization_eligibility(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/monetization/eligibility.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/monetization/eligibility.json'
     if not os.path.exists(path):
         return []
 
@@ -272,7 +262,6 @@ def parse_insta_liked_comments(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/likes/liked_comments.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/likes/liked_comments.json'
     if not os.path.exists(path):
         return []
 
@@ -298,7 +287,6 @@ def parse_insta_liked_posts(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/likes/liked_posts.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/likes/liked_posts.json'
     if not os.path.exists(path):
         return []
 
@@ -324,7 +312,6 @@ def parse_insta_post_comments(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/comments/post_comments.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/comments/post_comments.json'
     if not os.path.exists(path):
         return []
 
@@ -350,7 +337,6 @@ def parse_insta_information_submitted(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/ads_and_businesses/information_you\'ve_submitted_to_advertisers.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/ads_and_businesses/information_you\'ve_submitted_to_advertisers.json'
     if not os.path.exists(path):
         return []
 
@@ -377,7 +363,6 @@ def parse_insta_posts_viewed(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/ads_and_content/posts_viewed.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/ads_and_content/posts_viewed.json'
     if not os.path.exists(path):
         return []
 
@@ -403,7 +388,6 @@ def parse_insta_suggested_accounts_viewed(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/ads_and_content/suggested_accounts_viewed.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/ads_and_content/suggested_accounts_viewed.json'
     if not os.path.exists(path):
         return []
 
@@ -429,7 +413,6 @@ def parse_insta_account_based_in(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/information_about_you/account_based_in.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/information_about_you/account_based_in.json'
     if not os.path.exists(path):
         return []
 
@@ -455,7 +438,6 @@ def parse_insta_comments_allowed_from(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/comments_settings/comments_allowed_from.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/comments_settings/comments_allowed_from.json'
     if not os.path.exists(path):
         return []
 
@@ -481,7 +463,6 @@ def parse_insta_use_cross_app_messaging(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/comments_settings/use_cross-app_messaging.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/comments_settings/use_cross-app_messaging.json'
     if not os.path.exists(path):
         return []
 
@@ -507,7 +488,6 @@ def parse_insta_emoji_sliders(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/story_sticker_interactions/emoji_sliders.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/story_sticker_interactions/emoji_sliders.json'
     if not os.path.exists(path):
         return []
 
@@ -533,7 +513,6 @@ def parse_insta_polls(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/story_sticker_interactions/polls.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/story_sticker_interactions/polls.json'
     if not os.path.exists(path):
         return []
 
@@ -559,7 +538,6 @@ def parse_insta_quizzes(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/story_sticker_interactions/quizzes.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/story_sticker_interactions/quizzes.json'
     if not os.path.exists(path):
         return []
 
@@ -585,7 +563,6 @@ def parse_insta_archived_posts(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/content/archived_posts.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/content/archived_posts.json'
     if not os.path.exists(path):
         return []
 
@@ -611,7 +588,6 @@ def parse_insta_stories(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/content/stories.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/content/stories.json'
     if not os.path.exists(path):
         return []
 
@@ -637,7 +613,6 @@ def parse_insta_followers(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/followers_and_following/followers.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/followers_and_following/followers.json'
     if not os.path.exists(path):
         return []
 
@@ -665,7 +640,6 @@ def parse_insta_following(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/followers_and_following/following.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/followers_and_following/following.json'
     if not os.path.exists(path):
         return []
 
@@ -695,7 +669,6 @@ def parse_insta_hide_story_from(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/followers_and_following/hide_story_from.json'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/followers_and_following/hide_story_from.json'
     if not os.path.exists(path):
         return []
 
@@ -723,7 +696,6 @@ def parse_insta_messages(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/messages/inbox'
-    #path = '/Users/vamsi/Downloads/instagram-vamsimadhur/messages/inbox'
     users_inbox = os.listdir(path)
     titles = []
     for user in users_inbox:
