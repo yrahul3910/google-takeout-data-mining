@@ -13,3 +13,5 @@ from userdata_mining.mining.google_chat import *
 from userdata_mining.mining.google_play import *
 from userdata_mining.mining.google_pay import *
 from userdata_mining.mining.access_log import *
+from userdata_mining.mining.facebook import *
+from userdata_mining.mining.instagram import *
