@@ -14,6 +14,11 @@ if __name__ == '__main__':
     else:
         miner = GoogleDataMiner(user='rahul', data_path='.')
         embeddings = miner.mine_data()
+
+        # Save embeddings
+        with open('./saved/embeddings/rahul.pickle', 'wb') as f:
+            pickle.dump(embeddings, f)
+
         fbminer = FbInstaDataMiner(user='rahul', data_path='.')
         embeddings = fbminer.mine_data()
 
