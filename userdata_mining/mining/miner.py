@@ -781,7 +781,7 @@ class FbInstaDataMiner(DataMiner):
         else:
             self.apps_embeddings = []
             
-                if fb_ads_data is None:
+        if fb_ads_data is None:
              #Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_ads.pickle', 'wb') as f:
                  self.movies_embeddings = pickle.load(f)
