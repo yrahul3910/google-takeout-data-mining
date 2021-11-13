@@ -107,9 +107,15 @@ def parse_maps_data(user, data_path='.'):
 
         # Get the places near work and home
         if 'Work' in names:
+            work = list(
+                filter(lambda p: p['properties']['name'] == 'Work',
+                       features))[0]
             places.extend(get_nearby_places(work['geometry']['coordinates']))
 
         if 'Home' in names:
+            home = list(
+                filter(lambda p: p['properties']['name'] == 'Home',
+                       features))[0]
             places.extend(get_nearby_places(home['geometry']['coordinates']))
 
         # 20 days/month, back and forth.
