@@ -26,7 +26,9 @@ if __name__ == '__main__':
         with open('./saved/embeddings/rahul.pickle', 'wb') as f:
             pickle.dump(fb_embeddings, f)
 
-        embeddings = google_embeddings + fb_embeddings
+        # Merge dictionaries
+        google_embeddings |= fb_embeddings
+        embeddings = google_embeddings
 
     keys = list(embeddings.keys())
     keys.remove('Travel')
