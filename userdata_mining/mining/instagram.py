@@ -696,6 +696,9 @@ def parse_insta_messages(user, data_path='.'):
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/messages/inbox'
+    if not os.path.exists(path):
+        return []
+
     users_inbox = os.listdir(path)
     titles = []
     for user in users_inbox:
