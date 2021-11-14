@@ -42,7 +42,7 @@ def parse_play_data(user, library_type, data_path='.'):
         doc = x['libraryDoc']['doc']
         if doc['documentType'] == data_type and doc['title'] != 'Unknown Item':
             title = doc['title']
-            titles.append(str.split(doc['title'], '.')[2]) if title.startsWith('com.') else titles.append(title)
+            titles.append(str.split(doc['title'], '.')[2]) if title.startswith('com.') else titles.append(title)
 
     f.close()
 
