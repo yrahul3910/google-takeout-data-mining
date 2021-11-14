@@ -744,7 +744,7 @@ class FbInstaDataMiner(DataMiner):
             with open(f'{self.data_path}/saved/embeddings/fb_groups_comments.pickle', 'wb') as f:
                 pickle.dump(self.fb_groups_comments_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.fb_groups_comments_embeddings = []
 
         if fb_groups_membership_data:
             info('Embedding FB groups membership data. This may take a while.')
