@@ -238,7 +238,7 @@ def parse_fb_ads_interest(user, data_path='.'):
         titles.append(item)
     return titles
 
-def parse_fb_frnd_peer_group(user, data_path='.'):
+def parse_fb_friend_peer_group(user, data_path='.'):
     """
     Mines 
 

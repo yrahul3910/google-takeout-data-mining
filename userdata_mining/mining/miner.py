@@ -52,7 +52,7 @@ from userdata_mining.mining import parse_fb_search_history
 from userdata_mining.mining import parse_fb_pages_you_follow
 from userdata_mining.mining import parse_fb_pages_you_liked
 from userdata_mining.mining import parse_fb_ads_interest
-from userdata_mining.mining import parse_fb_frnd_peer_group
+from userdata_mining.mining import parse_fb_friend_peer_group
 from userdata_mining.mining import parse_fb_groups_comments
 from userdata_mining.mining import parse_fb_groups_membership
 from userdata_mining.mining import parse_fb_groups_posts
@@ -110,7 +110,7 @@ class FbInstaDataMiner(DataMiner):
     """
     Mines Instagram data.
     """
-    
+
     def mine_data(self):
         """
         Mines all data of Instagram and Facebook
@@ -139,466 +139,466 @@ class FbInstaDataMiner(DataMiner):
         emojis_data = parse_insta_emoji_sliders(self.user, data_path=self.data_path)
         polls_data = parse_insta_polls(self.user, data_path=self.data_path)
         quizzes_data = parse_insta_quizzes(self.user, data_path=self.data_path)
-        archieved_posts_data = parse_insta_archived_posts(self.user, data_path=self.data_path)
+        archived_posts_data = parse_insta_archived_posts(self.user, data_path=self.data_path)
         stories_data = parse_insta_stories(self.user, data_path=self.data_path)
         followers_data = parse_insta_followers(self.user, data_path=self.data_path)
         following_data = parse_insta_following(self.user, data_path=self.data_path)
         hide_story_data = parse_insta_hide_story_from(self.user, data_path=self.data_path)
         messages_data = parse_insta_messages(self.user, data_path=self.data_path)
-        
+
         info('Data parsed.')
-        
+
         info('Embedding text data. This may take a while.')
         embedding = Embedding(model='bert-base-uncased')
-        
+
         if ads_data:
             info('Embedding Instagram Ads data. This may take a while.')
-            self.ads_data = [
+            self.ads_embeddings = [
                 embedding.embed(x) for x in ads_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_ads.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.ads_embeddings, f)
         else:
-            self.apps_embeddings = []
-            
+            self.ads_embeddings = []
+
         if music_heard_data:
             info('Embedding Instagram Music Heard data. This may take a while.')
-            self.music_heard_data = [
+            self.music_heard_embeddings = [
                 embedding.embed(x) for x in music_heard_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_music.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.music_heard_embeddings, f)
         else:
-            self.apps_embeddings = []
-            
+            self.music_heard_embeddings = []
+
         if videos_watched_data:
             info('Embedding Instagram Videos Watched data. This may take a while.')
-            self.videos_watched_data = [
+            self.videos_watched_embeddings = [
                 embedding.embed(x) for x in videos_watched_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_videos.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.videos_watched_embeddings, f)
         else:
-            self.apps_embeddings = []
-        
+            self.videos_watched_embeddings = []
+
         if ads_interest_data:
             info('Embedding Instagram Ads Interest data. This may take a while.')
-            self.ads_interest_data = [
+            self.ads_interest_embeddings = [
                 embedding.embed(x) for x in ads_interest_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_ads_interest.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.ads_interest_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.ads_interest_embeddings = []
 
         if your_topics_data:
             info('Embedding Instagram Topics data. This may take a while.')
-            self.your_topics_data = [
+            self.your_topics_embeddings = [
                 embedding.embed(x) for x in your_topics_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_topics.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.your_topics_embeddings, f)
         else:
-            self.apps_embeddings = []
-            
+            self.your_topics_embeddings = []
+
         if reels_topics_data:
             info('Embedding Instagram Reels data. This may take a while.')
-            self.reels_topics_data = [
+            self.reels_topics_embeddings = [
                 embedding.embed(x) for x in reels_topics_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_reels_topics.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.reels_topics_embeddings, f)
         else:
-            self.apps_embeddings = []
-            
+            self.reels_topics_embeddings = []
+
         if reels_sentiments_data:
             info('Embedding Instagram Reels Sentiments data. This may take a while.')
-            self.reels_sentiments_data = [
+            self.reels_sentiments_embeddings = [
                 embedding.embed(x) for x in reels_sentiments_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_reels_sentiments.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.reels_sentiments_embeddings, f)
         else:
-            self.apps_embeddings = []
-        
+            self.reels_sentiments_embeddings = []
+
         if saved_posts_data:
             info('Embedding Instagram Saved Posts data. This may take a while.')
-            self.saved_posts_data = [
+            self.saved_posts_embeddings = [
                 embedding.embed(x) for x in saved_posts_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_saved_posts.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.saved_posts_embeddings, f)
         else:
-            self.apps_embeddings = []
-            
+            self.saved_posts_embeddings = []
+
         if account_searches_data:
             info('Embedding Instagram Account Searches data. This may take a while.')
-            self.account_searches_data = [
+            self.account_searches_embeddings = [
                 embedding.embed(x) for x in account_searches_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_account_searches.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.account_searches_embeddings, f)
         else:
-            self.apps_embeddings = []
-    
+            self.account_searches_embeddings = []
+
         if memo_data:
             info('Embedding Instagram Memo data. This may take a while.')
-            self.memo_data = [
+            self.memo_embeddings = [
                 embedding.embed(x) for x in memo_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_memo_data.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.memo_embeddings, f)
         else:
-            self.apps_embeddings = []
-        
+            self.memo_embeddings = []
+
         if liked_comments_data:
             info('Embedding Instagram Liked Comments data. This may take a while.')
-            self.liked_comments_data = [
+            self.liked_comments_embeddings = [
                 embedding.embed(x) for x in liked_comments_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_liked_comments.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.liked_comments_embeddings, f)
         else:
-            self.apps_embeddings = []
-        
+            self.liked_comments_embeddings = []
+
         if liked_posts_data:
-            info('Embedding Instagram Liekd Posts data. This may take a while.')
-            self.liked_posts_data = [
+            info('Embedding Instagram Liked Posts data. This may take a while.')
+            self.liked_posts_embeddings = [
                 embedding.embed(x) for x in liked_posts_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_liked_posts.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.liked_posts_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.liked_posts_embeddings = []
 
         if post_comments_data:
             info('Embedding Instagram Post Comments data. This may take a while.')
-            self.post_comments_data = [
+            self.post_comments_embeddings = [
                 embedding.embed(x) for x in post_comments_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_post_comments.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.post_comments_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.post_comments_embeddings = []
 
         if info_submitted_data:
             info('Embedding Instagram Info Submitted data. This may take a while.')
-            self.info_submitted_data = [
+            self.info_submitted_embeddings = [
                 embedding.embed(x) for x in info_submitted_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_info_submitted.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.info_submitted_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.info_submitted_embeddings = []
 
         if posts_viewed_data:
             info('Embedding Instagram Posts Viewed data. This may take a while.')
-            self.posts_viewed_data = [
+            self.posts_viewed_embeddings = [
                 embedding.embed(x) for x in posts_viewed_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_posts_viewed.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.posts_viewed_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.posts_viewed_embeddings = []
 
         if accounts_viewed_data:
             info('Embedding Instagram Accounts Viewed data. This may take a while.')
-            self.accounts_viewed_data = [
+            self.accounts_viewed_embeddings = [
                 embedding.embed(x) for x in accounts_viewed_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_accounts_viewed.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.accounts_viewed_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.accounts_viewed_embeddings = []
 
         if accounts_based_in_data:
             info('Embedding Instagram Accounts Based in data. This may take a while.')
-            self.accounts_based_in_data = [
+            self.accounts_based_in_embeddings = [
                 embedding.embed(x) for x in accounts_based_in_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_accounts_based.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.accounts_based_in_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.accounts_based_in_embeddings = []
 
         if comments_data:
             info('Embedding Instagram Comments data. This may take a while.')
-            self.comments_data = [
+            self.comments_embeddings = [
                 embedding.embed(x) for x in comments_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_comments_data.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.comments_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.comments_embeddings = []
 
         if cross_app_data:
             info('Embedding Instagram Cross App data. This may take a while.')
-            self.cross_app_data = [
+            self.cross_app_embeddings = [
                 embedding.embed(x) for x in cross_app_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_cross_app.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.cross_app_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.cross_app_embeddings = []
 
         if emojis_data:
             info('Embedding Instagram Emojis data. This may take a while.')
-            self.emojis_data = [
+            self.emojis_embeddings = [
                 embedding.embed(x) for x in emojis_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_emojis.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.emojis_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.emojis_embeddings = []
 
         if polls_data:
             info('Embedding Instagram Polls data. This may take a while.')
-            self.polls_data = [
+            self.polls_embeddings = [
                 embedding.embed(x) for x in polls_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_polls.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.polls_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.polls_embeddings = []
 
         if quizzes_data:
             info('Embedding Instagram Quizzes data. This may take a while.')
-            self.quizzes_data = [
+            self.quizzes_embeddings = [
                 embedding.embed(x) for x in quizzes_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_quizzes.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.quizzes_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.quizzes_embeddings = []
 
-        if archieved_posts_data:
-            info('Embedding Instagram Archieved Posts data. This may take a while.')
-            self.archieved_posts_data = [
-                embedding.embed(x) for x in archieved_posts_data]
+        if archived_posts_data:
+            info('Embedding Instagram Archived Posts data. This may take a while.')
+            self.archived_posts_embeddings = [
+                embedding.embed(x) for x in archived_posts_data]
 
             # Cache embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_archieved_posts.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+            with open(f'{self.data_path}/saved/embeddings/insta_archived_posts.pickle', 'wb') as f:
+                pickle.dump(self.archived_posts_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.archived_posts_embeddings = []
 
         if stories_data:
             info('Embedding Instagram Stories data. This may take a while.')
-            self.stories_data = [
+            self.stories_embeddings = [
                 embedding.embed(x) for x in stories_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_stories.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.stories_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.stories_embeddings = []
 
         if followers_data:
             info('Embedding Instagram Followers data. This may take a while.')
-            self.followers_data = [
+            self.followers_embeddings = [
                 embedding.embed(x) for x in followers_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_followers.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.followers_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.followers_embeddings = []
 
 
         if following_data:
             info('Embedding Instagram Following data. This may take a while.')
-            self.following_data = [
+            self.following_embeddings = [
                 embedding.embed(x) for x in following_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_following.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.following_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.following_embeddings = []
 
         if hide_story_data:
             info('Embedding Instagram Hide Story data. This may take a while.')
-            self.hide_story_data = [
+            self.hide_story_embeddings = [
                 embedding.embed(x) for x in hide_story_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_hide_story.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.hide_story_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.hide_story_embeddings = []
 
         if messages_data:
             info('Embedding Instagram Messages data. This may take a while.')
-            self.messages_data = [
+            self.messages_embeddings = [
                 embedding.embed(x) for x in messages_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_messgaes.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.messages_embeddings, f)
         else:
-            self.apps_embeddings = []
-            
+            self.messages_embeddings = []
+
         if ads_data is None:
              #Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_ads.pickle', 'wb') as f:
-                 self.movies_embeddings = pickle.load(f)
-                 
+                 self.ads_embeddings = pickle.load(f)
+
         if music_heard_data is None:
              #Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_music.pickle', 'wb') as f:
-                 self.movies_embeddings = pickle.load(f)
-                    
+                 self.music_heard_embeddings = pickle.load(f)
+
         if videos_watched_data is None:
              #Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/insta_videos.pickle', 'wb') as f:
-                 self.movies_embeddings = pickle.load(f)
+                 self.videos_watched_embeddings = pickle.load(f)
 
         if ads_interest_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_ads_interest.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
+            with open(f'{self.data_path}/saved/embeddings/insta_ads_interest.pickle', 'wb') as f:
+                 self.ads_interest_embeddings = pickle.load(f)
 
         if your_topics_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_topics.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
-               
+            with open(f'{self.data_path}/saved/embeddings/insta_topics.pickle', 'wb') as f:
+                 self.your_topics_embeddings = pickle.load(f)
+
         if reels_topics_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_reels_topics.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
-       
+            with open(f'{self.data_path}/saved/embeddings/insta_reels_topics.pickle', 'wb') as f:
+                 self.reels_topics_embeddings = pickle.load(f)
+
         if reels_sentiments_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_reels_sentiments.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
-                  
+            with open(f'{self.data_path}/saved/embeddings/insta_reels_sentiments.pickle', 'wb') as f:
+                 self.reels_sentiments_embeddings = pickle.load(f)
+
         if saved_posts_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_saved_posts.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
-               
+            with open(f'{self.data_path}/saved/embeddings/insta_saved_posts.pickle', 'wb') as f:
+                 self.saved_posts_embeddings = pickle.load(f)
+
         if account_searches_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_account_searches.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
-              
+            with open(f'{self.data_path}/saved/embeddings/insta_account_searches.pickle', 'wb') as f:
+                 self.account_searches_embeddings = pickle.load(f)
+
         if memo_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_memo_data.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
-               
+            with open(f'{self.data_path}/saved/embeddings/insta_memo_data.pickle', 'wb') as f:
+                 self.memo_embeddings = pickle.load(f)
+
         if liked_comments_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_liked_comments.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
-          
+            with open(f'{self.data_path}/saved/embeddings/insta_liked_comments.pickle', 'wb') as f:
+                 self.liked_comments_embeddings = pickle.load(f)
+
         if liked_posts_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_liked_posts.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
-          
+            with open(f'{self.data_path}/saved/embeddings/insta_liked_posts.pickle', 'wb') as f:
+                 self.liked_posts_embeddings = pickle.load(f)
+
         if post_comments_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_post_comments.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
-              
+            with open(f'{self.data_path}/saved/embeddings/insta_post_comments.pickle', 'wb') as f:
+                 self.post_comments_embeddings = pickle.load(f)
+
         if info_submitted_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_info_submitted.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
-      
+            with open(f'{self.data_path}/saved/embeddings/insta_info_submitted.pickle', 'wb') as f:
+                 self.info_submitted_embeddings = pickle.load(f)
+
         if posts_viewed_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_posts_viewed.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
-     
+            with open(f'{self.data_path}/saved/embeddings/insta_posts_viewed.pickle', 'wb') as f:
+                 self.posts_viewed_embeddings = pickle.load(f)
+
         if accounts_viewed_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_accounts_viewed.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
+            with open(f'{self.data_path}/saved/embeddings/insta_accounts_viewed.pickle', 'wb') as f:
+                 self.accounts_viewed_embeddings = pickle.load(f)
 
         if accounts_based_in_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_accounts_based.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
+            with open(f'{self.data_path}/saved/embeddings/insta_accounts_based.pickle', 'wb') as f:
+                 self.accounts_based_in_embeddings = pickle.load(f)
 
         if comments_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_comments_data.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
+            with open(f'{self.data_path}/saved/embeddings/insta_comments_data.pickle', 'wb') as f:
+                 self.comments_embeddings = pickle.load(f)
 
         if cross_app_data is None:
              # Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_cross_app.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
+            with open(f'{self.data_path}/saved/embeddings/insta_cross_app.pickle', 'wb') as f:
+                 self.cross_app_embeddings = pickle.load(f)
 
         if emojis_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_emojis.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
-       
+            with open(f'{self.data_path}/saved/embeddings/insta_emojis.pickle', 'wb') as f:
+                 self.emojis_embeddings = pickle.load(f)
+
         if polls_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_polls.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
-     
+            with open(f'{self.data_path}/saved/embeddings/insta_polls.pickle', 'wb') as f:
+                 self.polls_embeddings = pickle.load(f)
+
         if quizzes_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_quizzes.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
-       
-        if archieved_posts_data is None:
+            with open(f'{self.data_path}/saved/embeddings/insta_quizzes.pickle', 'wb') as f:
+                 self.quizzes_embeddings = pickle.load(f)
+
+        if archived_posts_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_archieved_posts.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
+            with open(f'{self.data_path}/saved/embeddings/insta_archived_posts.pickle', 'wb') as f:
+                 self.archived_posts_embeddings = pickle.load(f)
 
         if stories_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_stories.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
-      
+            with open(f'{self.data_path}/saved/embeddings/insta_stories.pickle', 'wb') as f:
+                 self.stories_embeddings = pickle.load(f)
+
         if followers_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_followers.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
+            with open(f'{self.data_path}/saved/embeddings/insta_followers.pickle', 'wb') as f:
+                 self.followers_embeddings = pickle.load(f)
 
         if following_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_following.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
-    
+            with open(f'{self.data_path}/saved/embeddings/insta_following.pickle', 'wb') as f:
+                 self.following_embeddings = pickle.load(f)
+
         if hide_story_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_hide_story.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
-       
+            with open(f'{self.data_path}/saved/embeddings/insta_hide_story.pickle', 'wb') as f:
+                 self.hide_story_embeddings = pickle.load(f)
+
         if messages_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/insta_messgaes.pickle', 'wb') as f:   
-                 self.movies_embeddings = pickle.load(f)
+            with open(f'{self.data_path}/saved/embeddings/insta_messgaes.pickle', 'wb') as f:
+                 self.messages_embeddings = pickle.load(f)
 
         fb_ads_data = parse_fb_advertisers(self.user, data_path=self.data_path)
         fb_apps_data = parse_fb_apps_and_websites(self.user, data_path=self.data_path)
@@ -610,7 +610,7 @@ class FbInstaDataMiner(DataMiner):
         fb_saved_posts_data = parse_fb_pages_you_follow(self.user, data_path=self.data_path)
         fb_pages_you_follow_data = parse_fb_pages_you_liked(self.user, data_path=self.data_path)
         fb_ads_interest_data = parse_fb_ads_interest(self.user, data_path=self.data_path)
-        fb_frnd_peer_group_data = parse_fb_frnd_peer_group(self.user, data_path=self.data_path)
+        fb_friend_peer_group_data = parse_fb_friend_peer_group(self.user, data_path=self.data_path)
         fb_groups_comments_data = parse_fb_groups_comments(self.user, data_path=self.data_path)
         fb_groups_membership_data = parse_fb_groups_membership(self.user, data_path=self.data_path)
         fb_groups_posts_data = parse_fb_groups_posts(self.user, data_path=self.data_path)
@@ -618,245 +618,245 @@ class FbInstaDataMiner(DataMiner):
 
         if fb_ads_data:
             info('Embedding FB Ads data. This may take a while.')
-            self.fb_ads_data = [
+            self.fb_ads_embeddings = [
                 embedding.embed(x) for x in fb_ads_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_ads.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.fb_ads_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.fb_ads_embeddings = []
 
         if fb_apps_data:
             info('Embedding FB Apps data. This may take a while.')
-            self.fb_apps_data = [
+            self.fb_apps_embeddings = [
                 embedding.embed(x) for x in fb_apps_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_apps.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.fb_apps_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.fb_apps_embeddings = []
 
         if fb_posts_apps_data:
             info('Embedding FB Posts apps data. This may take a while.')
-            self.fb_posts_apps_data = [
+            self.fb_posts_apps_embeddings = [
                 embedding.embed(x) for x in fb_posts_apps_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_posts_apps.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.fb_posts_apps_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.fb_posts_apps_embeddings = []
 
         if fb_your_topics_data:
             info('Embedding FB Topics data. This may take a while.')
-            self.fb_your_topics_data = [
+            self.fb_your_topics_embeddings = [
                 embedding.embed(x) for x in fb_your_topics_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_topics.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.fb_your_topics_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.fb_your_topics_embeddings = []
 
         if fb_comments_data:
             info('Embedding FB Comments data. This may take a while.')
-            self.fb_comments_data = [
+            self.fb_comments_embeddings = [
                 embedding.embed(x) for x in fb_comments_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_comments.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.fb_comments_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.fb_comments_embeddings = []
 
         if fb_reactions_data:
             info('Embedding FB Reactions data. This may take a while.')
-            self.fb_reactions_data = [
+            self.fb_reactions_embeddings = [
                 embedding.embed(x) for x in fb_reactions_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_reactions.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.fb_reactions_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.fb_reactions_embeddings = []
 
         if fb_search_historydata:
             info('Embedding FB Search History data. This may take a while.')
-            self.fb_search_historydata = [
+            self.fb_search_history_embeddings = [
                 embedding.embed(x) for x in fb_search_historydata]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_search_history.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.fb_search_history_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.fb_search_history_embeddings = []
 
         if fb_saved_posts_data:
             info('Embedding FB Saved Posts data. This may take a while.')
-            self.fb_saved_posts_data = [
+            self.fb_saved_posts_embeddings = [
                 embedding.embed(x) for x in fb_saved_posts_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_saved_posts.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.fb_saved_posts_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.fb_saved_posts_embeddings = []
 
         if fb_pages_you_follow_data:
             info('Embedding FB Pages You Follow data. This may take a while.')
-            self.fb_pages_you_follow_data = [
+            self.fb_pages_you_follow_embeddings = [
                 embedding.embed(x) for x in fb_pages_you_follow_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_pages_you_follow.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.fb_pages_you_follow_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.fb_pages_you_follow_embeddings = []
 
         if fb_ads_interest_data:
             info('Embedding FB Ads Interest data. This may take a while.')
-            self.fb_ads_interest_data = [
+            self.fb_ads_interest_embeddings = [
                 embedding.embed(x) for x in fb_ads_interest_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_ads_interest.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.fb_ads_interest_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.fb_ads_interest_embeddings = []
 
-        if fb_frnd_peer_group_data:
+        if fb_friend_peer_group_data:
             info('Embedding FB Friend Peer group data. This may take a while.')
-            self.fb_frnd_peer_group_data = [
-                embedding.embed(x) for x in fb_frnd_peer_group_data]
+            self.fb_friend_peer_group_embeddings = [
+                embedding.embed(x) for x in fb_friend_peer_group_data]
 
             # Cache embeddings
-            with open(f'{self.data_path}/saved/embeddings/fb_frnd_peer_group.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+            with open(f'{self.data_path}/saved/embeddings/fb_friend_peer_group.pickle', 'wb') as f:
+                pickle.dump(self.fb_friend_peer_group_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.fb_friend_peer_group_embeddings = []
 
         if fb_groups_comments_data:
             info('Embedding FB groups comments data. This may take a while.')
-            self.fb_groups_comments_data = [
+            self.fb_groups_comments_embeddings = [
                 embedding.embed(x) for x in fb_groups_comments_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_groups_comments.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.fb_groups_comments_embeddings, f)
         else:
             self.apps_embeddings = []
 
 
         if fb_groups_membership_data:
             info('Embedding FB groups membership data. This may take a while.')
-            self.fb_groups_membership_data = [
+            self.fb_groups_membership_embeddings = [
                 embedding.embed(x) for x in fb_groups_membership_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_groups_membership.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.fb_groups_membership_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.fb_groups_membership_embeddings = []
 
         if fb_groups_posts_data:
             info('Embedding FB groups posts data. This may take a while.')
-            self.fb_groups_posts_data = [
+            self.fb_groups_posts_embeddings = [
                 embedding.embed(x) for x in fb_groups_posts_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_groups_posts.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.fb_groups_posts_embeddings, f)
         else:
-            self.apps_embeddings = []
+            self.fb_groups_posts_embeddings = []
 
         if fb_messages_data:
             info('Embedding FB Messages data. This may take a while.')
-            self.fb_messages_data = [
+            self.fb_messages_embeddings = [
                 embedding.embed(x) for x in fb_messages_data]
 
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_messages.pickle', 'wb') as f:
-                pickle.dump(self.apps_embeddings, f)
+                pickle.dump(self.fb_messages_embeddings, f)
         else:
-            self.apps_embeddings = []
-            
+            self.fb_messages_embeddings = []
+
         if fb_ads_data is None:
              #Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_ads.pickle', 'wb') as f:
-                 self.movies_embeddings = pickle.load(f)
+                 self.fb_ads_embeddings = pickle.load(f)
 
         if fb_apps_data is None:
              #Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_apps.pickle', 'wb') as f:
-                 self.movies_embeddings = pickle.load(f)
+                 self.fb_ads_interest_embeddings = pickle.load(f)
 
         if fb_posts_apps_data is None:
              #Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_posts_apps.pickle', 'wb') as f:
-                 self.movies_embeddings = pickle.load(f)
+                 self.fb_posts_apps_embeddings = pickle.load(f)
 
         if fb_your_topics_data is None:
              #Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_topics.pickle', 'wb') as f:
-                 self.movies_embeddings = pickle.load(f)
-       
+                 self.fb_your_topics_embeddings = pickle.load(f)
+
         if fb_comments_data is None:
              #Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_comments.pickle', 'wb') as f:
-                 self.movies_embeddings = pickle.load(f)
-       
+                 self.fb_comments_embeddings = pickle.load(f)
+
         if fb_reactions_data is None:
              #Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_reactions.pickle', 'wb') as f:
-                 self.movies_embeddings = pickle.load(f)
+                 self.fb_reactions_embeddings = pickle.load(f)
 
         if fb_search_historydata is None:
              #Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_search_history.pickle', 'wb') as f:
-                 self.movies_embeddings = pickle.load(f)
-     
+                 self.fb_search_history_embeddings = pickle.load(f)
+
         if fb_saved_posts_data is None:
              #Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_saved_posts.pickle', 'wb') as f:
-                 self.movies_embeddings = pickle.load(f)
+                 self.fb_saved_posts_embeddings = pickle.load(f)
 
         if fb_pages_you_follow_data is None:
              #Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_pages_you_follow.pickle', 'wb') as f:
-                 self.movies_embeddings = pickle.load(f)
+                 self.fb_pages_you_follow_embeddings = pickle.load(f)
 
         if fb_ads_interest_data is None:
              #Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_ads_interest.pickle', 'wb') as f:
-                 self.movies_embeddings = pickle.load(f)
-    
-        if fb_frnd_peer_group_data is None:
+                 self.fb_ads_interest_embeddings = pickle.load(f)
+
+        if fb_friend_peer_group_data is None:
              #Load cached embeddings
-            with open(f'{self.data_path}/saved/embeddings/fb_frnd_peer_group.pickle', 'wb') as f:
-                 self.movies_embeddings = pickle.load(f)
+            with open(f'{self.data_path}/saved/embeddings/fb_friend_peer_group.pickle', 'wb') as f:
+                 self.fb_friend_peer_group_embeddings = pickle.load(f)
 
         if fb_groups_comments_data is None:
              #Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_groups_comments.pickle', 'wb') as f:
-                 self.movies_embeddings = pickle.load(f)
-     
+                 self.fb_groups_comments_embeddings = pickle.load(f)
+
         if fb_groups_membership_data is None:
              #Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_groups_membership.pickle', 'wb') as f:
-                 self.movies_embeddings = pickle.load(f)
+                 self.fb_groups_membership_embeddings = pickle.load(f)
 
         if fb_groups_posts_data is None:
              #Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_groups_posts.pickle', 'wb') as f:
-                 self.movies_embeddings = pickle.load(f)
+                 self.fb_groups_posts_embeddings = pickle.load(f)
 
         if fb_messages_data is None:
              #Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/fb_messages.pickle', 'wb') as f:
-                 self.movies_embeddings = pickle.load(f)
-                 
+                 self.fb_messages_embeddings = pickle.load(f)
+
         info(f'Embedding complete. Data details:\n' +
              f'Insta Advertisements Data: {len(self.ads_data)} item(s).\n' +
              f'Insta Music heard: {len(self.music_heard_data)} item(s).\n' +
@@ -879,7 +879,7 @@ class FbInstaDataMiner(DataMiner):
              f'Insta Emojis: {len(self.emojis_data)} item(s).\n' +
              f'Insta Polls: {len(self.polls_data)} item(s).\n' +
              f'Insta Quizzes: {len(self.quizzes_data)} item(s).\n' +
-             f'Insta Archieved Posts: {len(self.archieved_posts_data)} item(s).\n' +
+             f'Insta Archived Posts: {len(self.archived_posts_data)} item(s).\n' +
              f'Insta Stories: {len(self.stories_data)} item(s). \n' +
              f'Insta Followers: {len(self.followers_data)} item(s).\n' +
              f'Insta Following: {len(self.following_data)} item(s).\n' +
@@ -895,12 +895,12 @@ class FbInstaDataMiner(DataMiner):
              f'FB Saved posts: {len(self.fb_saved_posts_data)} item(s).\n' +
              f'FB Pages followed: {len(self.fb_pages_you_follow_data)} item(s).\n' +
              f'FB Ad interests: {len(self.fb_ads_interest_data)} item(s).\n' +
-             f'FB Friend peer group: {len(self.fb_frnd_peer_group_data)} item(s). \n' +
+             f'FB Friend peer group: {len(self.fb_friend_peer_group_data)} item(s). \n' +
              f'FB Group comments: {len(self.fb_groups_comments_data)} item(s).\n' +
              f'FB Group membership: {len(self.fb_groups_membership_data)} item(s).\n' +
              f'FB Group posts: {len(self.fb_groups_posts_data)} item(s).\n' +
              f'FB Messages: {len(self.fb_messages_data)} item(s).')
-        
+
         return {
             'Insta Advertisements Data': self.ads_data,
             'Insta Music heard': self.music_heard_data,
@@ -924,7 +924,7 @@ class FbInstaDataMiner(DataMiner):
             'Insta Emojis': self.emojis_data,
             'Insta Polls': self.polls_data,
             'Insta Quizzes': self.quizzes_data,
-            'Insta Archieved Posts': self.archieved_posts_data,
+            'Insta Archived Posts': self.archived_posts_data,
             'Insta Stories': self.stories_data,
             'Insta Followers': self.followers_data,
             'Insta Following': self.following_data,
@@ -940,14 +940,14 @@ class FbInstaDataMiner(DataMiner):
             'FB Saved posts': self.fb_saved_posts_data,
             'FB Pages followed': self.fb_pages_you_follow_data,
             'FB Ad interests': self.fb_ads_interest_data,
-            'FB Friend peer group': self.fb_frnd_peer_group_data,
+            'FB Friend peer group': self.fb_friend_peer_group_data,
             'FB Group comments': self.fb_groups_comments_data,
             'FB Group membership': self.fb_groups_membership_data,
             'FB Group posts': self.fb_groups_posts_data,
             'FB Messages': self.fb_messages_data
         }
-        
-        
+
+
 
 class GoogleDataMiner(DataMiner):
     """
@@ -1050,13 +1050,13 @@ class GoogleDataMiner(DataMiner):
                 embedding.embed(x) for x in hangouts_data]
             self.messages_embeddings = [
                 x for x in self.messages_embeddings if x is not None]
-            
+
             # Cache embeddings
             with open(f'{self.data_path}/saved/embeddings/hangouts.pickle', 'wb') as f:
                 pickle.dump(self.messages_embeddings, f)
         else:
             self.messages_embeddings = []
-        
+
         if chats_data:
             info('Embedding Google Chat data. This may take a while.')
             self.chats_embeddings = [

@@ -559,7 +559,7 @@ def parse_insta_archived_posts(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} posts you archieved in instagram
+    :return {list} posts you archived in instagram
     """
     # Does the directory exist?
     path = f'{data_path}/data/{user}/instagram/content/archived_posts.json'
