@@ -855,93 +855,93 @@ class FbInstaDataMiner(DataMiner):
                 self.fb_messages_embeddings = pickle.load(f)
 
         info(f'Embedding complete. Data details:\n' +
-             f'Insta Advertisements Data: {len(self.ads_data)} item(s).\n' +
-             f'Insta Music heard: {len(self.music_heard_data)} item(s).\n' +
-             f'Insta Videos watched: {len(self.videos_watched_data)} item(s).\n' +
-             f'Insta Interests: {len(self.ads_interest_data)} item(s).\n' +
-             f'Insta Topics: {len(self.your_topics_data)} item(s).\n' +
-             f'Insta Reels Topics: {len(self.reels_topics_data)} item(s).\n' +
-             f'Insta Posts Saved: {len(self.reels_sentiments_data)} item(s).\n' +
-             f'Insta Account Searches: {len(self.account_searches_data)} item(s).\n' +
-             f'Insta Memo Data: {len(self.memo_data)} item(s).\n' +
-             f'Insta Liked Comments: {len(self.liked_comments_data)} item(s).\n' +
-             f'Insta Liked Posts: {len(self.liked_posts_data)} item(s). \n' +
-             f'Insta Post Comments: {len(self.post_comments_data)} item(s).\n' +
-             f'Insta Information Submitted: {len(self.info_submitted_data)} item(s).\n' +
-             f'Insta Posts viewed: {len(self.posts_viewed_data)} item(s).\n' +
-             f'Insta Accounts Viewed: {len(self.accounts_viewed_data)} item(s).\n' +
-             f'Insta Accounts based: {len(self.accounts_based_in_data)} item(s).\n' +
-             f'Insta Comments: {len(self.comments_data)} item(s).\n' +
-             f'Insta Cross App Data: {len(self.cross_app_data)} item(s).\n' +
-             f'Insta Emojis: {len(self.emojis_data)} item(s).\n' +
-             f'Insta Polls: {len(self.polls_data)} item(s).\n' +
-             f'Insta Quizzes: {len(self.quizzes_data)} item(s).\n' +
-             f'Insta Archived Posts: {len(self.archived_posts_data)} item(s).\n' +
-             f'Insta Stories: {len(self.stories_data)} item(s). \n' +
-             f'Insta Followers: {len(self.followers_data)} item(s).\n' +
-             f'Insta Following: {len(self.following_data)} item(s).\n' +
-             f'Insta Hided story: {len(self.hide_story_data)} item(s).\n' +
-             f'Insta Messages: {len(self.messages_data)} item(s).\n' +
-             f'FB Advertisements: {len(self.fb_ads_data)} item(s).\n' +
-             f'FB Apps: {len(self.fb_apps_data)} item(s).\n' +
-             f'FB Posts Apps: {len(self.fb_posts_apps_data)} item(s).\n' +
-             f'FB Topics: {len(self.fb_your_topics_data)} item(s).\n' +
-             f'FB Comments: {len(self.fb_comments_data)} item(s).\n' +
-             f'FB Reactions: {len(self.fb_reactions_data)} item(s).\n' +
-             f'FB Search History: {len(self.fb_search_historydata)} item(s).\n' +
-             f'FB Saved posts: {len(self.fb_saved_posts_data)} item(s).\n' +
-             f'FB Pages followed: {len(self.fb_pages_you_follow_data)} item(s).\n' +
-             f'FB Ad interests: {len(self.fb_ads_interest_data)} item(s).\n' +
-             f'FB Friend peer group: {len(self.fb_friend_peer_group_data)} item(s). \n' +
-             f'FB Group comments: {len(self.fb_groups_comments_data)} item(s).\n' +
-             f'FB Group membership: {len(self.fb_groups_membership_data)} item(s).\n' +
-             f'FB Group posts: {len(self.fb_groups_posts_data)} item(s).\n' +
-             f'FB Messages: {len(self.fb_messages_data)} item(s).')
+             f'Insta Advertisements Data: {len(self.ads_embeddings)} item(s).\n' +
+             f'Insta Music heard: {len(self.music_heard_embeddings)} item(s).\n' +
+             f'Insta Videos watched: {len(self.videos_watched_embeddings)} item(s).\n' +
+             f'Insta Interests: {len(self.ads_interest_embeddings)} item(s).\n' +
+             f'Insta Topics: {len(self.your_topics_embeddings)} item(s).\n' +
+             f'Insta Reels Topics: {len(self.reels_topics_embeddings)} item(s).\n' +
+             f'Insta Posts Saved: {len(self.reels_sentiments_embeddings)} item(s).\n' +
+             f'Insta Account Searches: {len(self.account_searches_embeddings)} item(s).\n' +
+             f'Insta Memo Data: {len(self.memo_embeddings)} item(s).\n' +
+             f'Insta Liked Comments: {len(self.liked_comments_embeddings)} item(s).\n' +
+             f'Insta Liked Posts: {len(self.liked_posts_embeddings)} item(s). \n' +
+             f'Insta Post Comments: {len(self.post_comments_embeddings)} item(s).\n' +
+             f'Insta Information Submitted: {len(self.info_submitted_embeddings)} item(s).\n' +
+             f'Insta Posts viewed: {len(self.posts_viewed_embeddings)} item(s).\n' +
+             f'Insta Accounts Viewed: {len(self.accounts_viewed_embeddings)} item(s).\n' +
+             f'Insta Accounts based: {len(self.accounts_based_in_embeddings)} item(s).\n' +
+             f'Insta Comments: {len(self.comments_embeddings)} item(s).\n' +
+             f'Insta Cross App Data: {len(self.cross_app_embeddings)} item(s).\n' +
+             f'Insta Emojis: {len(self.emojis_embeddings)} item(s).\n' +
+             f'Insta Polls: {len(self.polls_embeddings)} item(s).\n' +
+             f'Insta Quizzes: {len(self.quizzes_embeddings)} item(s).\n' +
+             f'Insta Archived Posts: {len(self.archived_posts_embeddings)} item(s).\n' +
+             f'Insta Stories: {len(self.stories_embeddings)} item(s). \n' +
+             f'Insta Followers: {len(self.followers_embeddings)} item(s).\n' +
+             f'Insta Following: {len(self.following_embeddings)} item(s).\n' +
+             f'Insta Hided story: {len(self.hide_story_embeddings)} item(s).\n' +
+             f'Insta Messages: {len(self.messages_embeddings)} item(s).\n' +
+             f'FB Advertisements: {len(self.fb_ads_embeddings)} item(s).\n' +
+             f'FB Apps: {len(self.fb_apps_embeddings)} item(s).\n' +
+             f'FB Posts Apps: {len(self.fb_posts_apps_embeddings)} item(s).\n' +
+             f'FB Topics: {len(self.fb_your_topics_embeddings)} item(s).\n' +
+             f'FB Comments: {len(self.fb_comments_embeddings)} item(s).\n' +
+             f'FB Reactions: {len(self.fb_reactions_embeddings)} item(s).\n' +
+             f'FB Search History: {len(self.fb_search_history_embeddings)} item(s).\n' +
+             f'FB Saved posts: {len(self.fb_saved_posts_embeddings)} item(s).\n' +
+             f'FB Pages followed: {len(self.fb_pages_you_follow_embeddings)} item(s).\n' +
+             f'FB Ad interests: {len(self.fb_ads_interest_embeddings)} item(s).\n' +
+             f'FB Friend peer group: {len(self.fb_friend_peer_group_embeddings)} item(s). \n' +
+             f'FB Group comments: {len(self.fb_groups_comments_embeddings)} item(s).\n' +
+             f'FB Group membership: {len(self.fb_groups_membership_embeddings)} item(s).\n' +
+             f'FB Group posts: {len(self.fb_groups_posts_embeddings)} item(s).\n' +
+             f'FB Messages: {len(self.fb_messages_embeddings)} item(s).')
 
         return {
-            'Insta Advertisements Data': self.ads_data,
-            'Insta Music heard': self.music_heard_data,
-            'Insta Videos watched': self.videos_watched_data,
-            'Insta Interests': self.ads_interest_data,
-            'Insta Topics': self.your_topics_data,
-            'Insta Reels Topics': self.reels_topics_data,
-            'Insta Reels Sentiments': self.reels_sentiments_data,
-            'Insta Posts Saved': self.saved_posts_data,
-            'Insta Account Searches': self.account_searches_data,
-            'Insta Memo Data': self.memo_data,
-            'Insta Liked Comments': self.liked_comments_data,
-            'Insta Liked Posts': self.liked_posts_data,
-            'Insta Post Comments': self.post_comments_data,
-            'Insta Information Submitted': self.info_submitted_data,
-            'Insta Posts viewed': self.posts_viewed_data,
-            'Insta Accounts Viewed': self.accounts_viewed_data,
-            'Insta Accounts based': self.accounts_based_in_data,
-            'Insta Comments': self.comments_data,
-            'Insta Cross App Data': self.cross_app_data,
-            'Insta Emojis': self.emojis_data,
-            'Insta Polls': self.polls_data,
-            'Insta Quizzes': self.quizzes_data,
-            'Insta Archived Posts': self.archived_posts_data,
-            'Insta Stories': self.stories_data,
-            'Insta Followers': self.followers_data,
-            'Insta Following': self.following_data,
-            'Insta Hided story': self.hide_story_data,
-            'Insta Messages': self.messages_data,
-            'FB Advertisements': self.fb_ads_data,
-            'FB Apps': self.fb_apps_data,
-            'FB Posts Apps': self.fb_posts_apps_data,
-            'FB Topics': self.fb_your_topics_data,
-            'FB Comments': self.fb_comments_data,
-            'FB Reactions': self.fb_reactions_data,
-            'FB Search History': self.fb_search_historydata,
-            'FB Saved posts': self.fb_saved_posts_data,
-            'FB Pages followed': self.fb_pages_you_follow_data,
-            'FB Ad interests': self.fb_ads_interest_data,
-            'FB Friend peer group': self.fb_friend_peer_group_data,
-            'FB Group comments': self.fb_groups_comments_data,
-            'FB Group membership': self.fb_groups_membership_data,
-            'FB Group posts': self.fb_groups_posts_data,
-            'FB Messages': self.fb_messages_data
+            'Insta Advertisements Data': self.ads_embeddings,
+            'Insta Music heard': self.music_heard_embeddings,
+            'Insta Videos watched': self.videos_watched_embeddings,
+            'Insta Interests': self.ads_interest_embeddings,
+            'Insta Topics': self.your_topics_embeddings,
+            'Insta Reels Topics': self.reels_topics_embeddings,
+            'Insta Reels Sentiments': self.reels_sentiments_embeddings,
+            'Insta Posts Saved': self.saved_posts_embeddings,
+            'Insta Account Searches': self.account_searches_embeddings,
+            'Insta Memo Data': self.memo_embeddings,
+            'Insta Liked Comments': self.liked_comments_embeddings,
+            'Insta Liked Posts': self.liked_posts_embeddings,
+            'Insta Post Comments': self.post_comments_embeddings,
+            'Insta Information Submitted': self.info_submitted_embeddings,
+            'Insta Posts viewed': self.posts_viewed_embeddings,
+            'Insta Accounts Viewed': self.accounts_viewed_embeddings,
+            'Insta Accounts based': self.accounts_based_in_embeddings,
+            'Insta Comments': self.comments_embeddings,
+            'Insta Cross App Data': self.cross_app_embeddings,
+            'Insta Emojis': self.emojis_embeddings,
+            'Insta Polls': self.polls_embeddings,
+            'Insta Quizzes': self.quizzes_embeddings,
+            'Insta Archived Posts': self.archived_posts_embeddings,
+            'Insta Stories': self.stories_embeddings,
+            'Insta Followers': self.followers_embeddings,
+            'Insta Following': self.following_embeddings,
+            'Insta Hided story': self.hide_story_embeddings,
+            'Insta Messages': self.messages_embeddings,
+            'FB Advertisements': self.fb_ads_embeddings,
+            'FB Apps': self.fb_apps_embeddings,
+            'FB Posts Apps': self.fb_posts_apps_embeddings,
+            'FB Topics': self.fb_your_topics_embeddings,
+            'FB Comments': self.fb_comments_embeddings,
+            'FB Reactions': self.fb_reactions_embeddings,
+            'FB Search History': self.fb_search_history_embeddings,
+            'FB Saved posts': self.fb_saved_posts_embeddings,
+            'FB Pages followed': self.fb_pages_you_follow_embeddings,
+            'FB Ad interests': self.fb_ads_interest_embeddings,
+            'FB Friend peer group': self.fb_friend_peer_group_embeddings,
+            'FB Group comments': self.fb_groups_comments_embeddings,
+            'FB Group membership': self.fb_groups_membership_embeddings,
+            'FB Group posts': self.fb_groups_posts_embeddings,
+            'FB Messages': self.fb_messages_embeddings
         }
 
 
