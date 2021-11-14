@@ -30,6 +30,6 @@ def parse_chats_data(user, data_path='.'):
     for file in glob.glob(f'{path}/**/messages.json'):
         with open(file, 'r') as f:
             data = json.load(f)
-            messages = [x['text'] for x in data['messages']]
+            messages = [x['text'] for x in data['messages'] if 'text' in x]
 
     return messages

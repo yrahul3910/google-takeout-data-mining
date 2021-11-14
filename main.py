@@ -13,11 +13,22 @@ if __name__ == '__main__':
             embeddings = pickle.load(f)
     else:
         miner = GoogleDataMiner(user='rahul', data_path='.')
-        embeddings = miner.mine_data()
+        google_embeddings = miner.mine_data()
 
         # Save embeddings
         with open('./saved/embeddings/rahul.pickle', 'wb') as f:
-            pickle.dump(embeddings, f)
+            pickle.dump(google_embeddings, f)
+
+        fbminer = FbInstaDataMiner(user='rahul', data_path='.')
+        fb_embeddings = fbminer.mine_data()
+
+        # Save embeddings
+        with open('./saved/embeddings/rahul.pickle', 'wb') as f:
+            pickle.dump(fb_embeddings, f)
+
+        # Merge dictionaries
+        google_embeddings |= fb_embeddings
+        embeddings = google_embeddings
 
     keys = list(embeddings.keys())
     keys.remove('Travel')
