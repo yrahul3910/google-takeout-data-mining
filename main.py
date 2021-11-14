@@ -12,19 +12,19 @@ if __name__ == '__main__':
         with open('./saved/embeddings/rahul.pickle', 'rb') as f:
             embeddings = pickle.load(f)
     else:
-        miner = GoogleDataMiner(user='rahul', data_path='.')
-        google_embeddings = miner.mine_data()
-
-        # Save embeddings
-        with open('./saved/embeddings/rahul.pickle', 'wb') as f:
-            pickle.dump(google_embeddings, f)
-
         fbminer = FbInstaDataMiner(user='rahul', data_path='.')
         fb_embeddings = fbminer.mine_data()
 
         # Save embeddings
         with open('./saved/embeddings/rahul.pickle', 'wb') as f:
             pickle.dump(fb_embeddings, f)
+
+        miner = GoogleDataMiner(user='rahul', data_path='.')
+        google_embeddings = miner.mine_data()
+
+        # Save embeddings
+        with open('./saved/embeddings/rahul.pickle', 'wb') as f:
+            pickle.dump(google_embeddings, f)
 
         # Merge dictionaries
         google_embeddings |= fb_embeddings
