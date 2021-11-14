@@ -1060,6 +1060,18 @@ class GoogleDataMiner(DataMiner):
         else:
             self.chats_embeddings = []
 
+        if mail_data:
+            info('Embedding email data. This may take a while.')
+            self.email_embeddings = [embedding.embed(x) for x in mail_data]
+            self.email_embeddings = [
+                x for x in self.email_embeddings if x is not None]
+
+            # Cache email embeddings
+            with open(f'{self.data_path}/saved/embeddings/mail.pickle', 'wb') as f:
+                pickle.dump(self.email_embeddings, f)
+        else:
+            self.email_embeddings = []
+
         if movies_data:
             info('Embedding Google Play Movies data. This may take a while.')
             self.movies_embeddings = [
@@ -1139,15 +1151,6 @@ class GoogleDataMiner(DataMiner):
             # Load cached embeddings
             with open(f'{self.data_path}/saved/embeddings/pay.pickle', 'rb') as f:
                 self.transactions_embeddings = pickle.load(f)
-
-        else:
-            info('Embedding email data. This may take a while.')
-            self.email_embeddings = [embedding.embed(x) for x in mail_data]
-            self.email_embeddings = [
-                x for x in self.email_embeddings if x is not None]
-            # Cache email embeddings
-            with open(f'{self.data_path}/saved/embeddings/mail.pickle', 'wb') as f:
-                pickle.dump(self.email_embeddings, f)
 
         info(f'Embedding complete. Data details:\n' +
              f'Activities: {len(self.activities_embeddings)} item(s).\n' +
