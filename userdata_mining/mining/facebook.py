@@ -11,7 +11,7 @@ def parse_fb_advertisers(user, data_path='.'):
     :return {list} advertisers who uplaoded a contact list with your information
     """
     # Does the directory exist?
-    path = f'{data_path}/data/{user}/facebook/ads_information/advertisers_who_uploaded_a_contact_list_with_your_information.json'
+    path = f'{data_path}/data/{user}/Facebook/ads_information/advertisers_who_uploaded_a_contact_list_with_your_information.json'
     if not os.path.exists(path):
         return []
 
@@ -29,10 +29,10 @@ def parse_fb_apps_and_websites(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} apps and websotes of facebook user used
+    :return {list} apps and websotes of Facebook user used
     """
     # Does the directory exist?
-    path = f'{data_path}/data/{user}/facebook/apps_and_websites_off_of_facebook/apps_and_websites.json'
+    path = f'{data_path}/data/{user}/Facebook/apps_and_websites_off_of_facebook/apps_and_websites.json'
     if not os.path.exists(path):
         return []
 
@@ -53,10 +53,10 @@ def parse_fb_posts_from_apps_and_websites(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} posts from apps and websotes of facebook user used
+    :return {list} posts from apps and websotes of Facebook user used
     """
     # Does the directory exist?
-    path = f'{data_path}/data/{user}/facebook/apps_and_websites_off_of_facebook/posts_from_apps_and_websites.json'
+    path = f'{data_path}/data/{user}/Facebook/apps_and_websites_off_of_facebook/posts_from_apps_and_websites.json'
     if not os.path.exists(path):
         return []
 
@@ -81,7 +81,7 @@ def parse_fb_your_topics(user, data_path='.'):
     :return {list} list of topics you are intrested in
     """
     # Does the directory exist?
-    path = f'{data_path}/data/{user}/facebook/your_topics/your_topics.json'
+    path = f'{data_path}/data/{user}/Facebook/your_topics/your_topics.json'
     if not os.path.exists(path):
         return []
 
@@ -102,7 +102,7 @@ def parse_fb_comments(user, data_path='.'):
     :return {list} comments you posted on posts
     """
     # Does the directory exist?
-    path = f'{data_path}/data/{user}/facebook/comments_and_reactions/comments.json'
+    path = f'{data_path}/data/{user}/Facebook/comments_and_reactions/comments.json'
     if not os.path.exists(path):
         return []
 
@@ -128,7 +128,7 @@ def parse_fb_reactions(user, data_path='.'):
     :return {list} reactions on different posts
     """
     # Does the directory exist?
-    path = f'{data_path}/data/{user}/facebook/comments_and_reactions/posts_and_comments.json'
+    path = f'{data_path}/data/{user}/Facebook/comments_and_reactions/posts_and_comments.json'
     if not os.path.exists(path):
         return []
 
@@ -148,10 +148,10 @@ def parse_fb_search_history(user, data_path='.'):
 
     :param {str} user - The user directory.
     :param {str} data_path - Path to the data/ directory, NOT ending in a /.
-    :return {list} facebook search history
+    :return {list} Facebook search history
     """
     # Does the directory exist?
-    path = f'{data_path}/data/{user}/facebook/search/your_search_history.json'
+    path = f'{data_path}/data/{user}/Facebook/search/your_search_history.json'
     if not os.path.exists(path):
         return []
 
@@ -176,7 +176,7 @@ def parse_fb_pages_you_follow(user, data_path='.'):
     :return {list} list of pages you follow on FB
     """
     # Does the directory exist?
-    path = f'{data_path}/data/{user}/facebook/pages/pages_you_follow.json'
+    path = f'{data_path}/data/{user}/Facebook/pages/pages_you_follow.json'
     if not os.path.exists(path):
         return []
 
@@ -201,7 +201,7 @@ def parse_fb_pages_you_liked(user, data_path='.'):
     :return {list} pages you liked on FB
     """
     # Does the directory exist?
-    path = f'{data_path}/data/{user}/facebook/pages/pages_you\'ve_liked.json'
+    path = f'{data_path}/data/{user}/Facebook/pages/pages_you\'ve_liked.json'
     if not os.path.exists(path):
         return []
 
@@ -224,7 +224,7 @@ def parse_fb_ads_interest(user, data_path='.'):
     :return {list} List of your ad interests
     """
     # Does the directory exist?
-    path = f'{data_path}/data/{user}/facebook/other_logged_information/ads_interests.json'
+    path = f'{data_path}/data/{user}/Facebook/other_logged_information/ads_interests.json'
     if not os.path.exists(path):
         return []
 
@@ -238,7 +238,7 @@ def parse_fb_ads_interest(user, data_path='.'):
         titles.append(item)
     return titles
 
-def parse_fb_frnd_peer_group(user, data_path='.'):
+def parse_fb_friend_peer_group(user, data_path='.'):
     """
     Mines 
 
@@ -247,7 +247,7 @@ def parse_fb_frnd_peer_group(user, data_path='.'):
     :return {list} list of your friend peer groups
     """
     # Does the directory exist?
-    path = f'{data_path}/data/{user}/facebook/other_logged_information/friend_peer_group.json'
+    path = f'{data_path}/data/{user}/Facebook/other_logged_information/friend_peer_group.json'
     if not os.path.exists(path):
         return []
 
@@ -270,7 +270,7 @@ def parse_fb_groups_comments(user, data_path='.'):
     :return {list} list of fb groups comments
     """
     # Does the directory exist?
-    path = f'{data_path}/data/{user}/facebook/groups/your_comments_in_groups.json'
+    path = f'{data_path}/data/{user}/Facebook/groups/your_comments_in_groups.json'
     if not os.path.exists(path):
         return []
 
@@ -293,7 +293,7 @@ def parse_fb_groups_membership(user, data_path='.'):
     :return {list}list of groups you are member in
     """
     # Does the directory exist?
-    path = f'{data_path}/data/{user}/facebook/groups/your_group_membership_activity.json'
+    path = f'{data_path}/data/{user}/Facebook/groups/your_group_membership_activity.json'
     if not os.path.exists(path):
         return []
 
@@ -316,7 +316,7 @@ def parse_fb_groups_posts(user, data_path='.'):
     :return {list} group posts
     """
     # Does the directory exist?
-    path = f'{data_path}/data/{user}/facebook/groups/your_posts_in_groups.json'
+    path = f'{data_path}/data/{user}/Facebook/groups/your_posts_in_groups.json'
     if not os.path.exists(path):
         return []
 
@@ -340,7 +340,10 @@ def parse_fb_messages(user, data_path='.'):
     :return {list} parses entire messages sent and recieved by you thorugh fb chat
     """
     # Does the directory exist?
-    path = f'{data_path}/data/{user}/facebook/messages/inbox'
+    path = f'{data_path}/data/{user}/Facebook/messages/inbox'
+    if not os.path.exists(path):
+        return []
+
     users_inbox = os.listdir(path)
     titles = []
     for user in users_inbox:
