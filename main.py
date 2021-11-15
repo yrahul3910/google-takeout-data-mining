@@ -19,8 +19,7 @@ if __name__ == '__main__':
         google_embeddings = miner.mine_data()
 
         # Merge dictionaries
-        google_embeddings |= fb_embeddings
-        embeddings = google_embeddings
+        embeddings = {**google_embeddings, **fb_embeddings}
 
         # Save embeddings
         with open('./saved/embeddings/rahul.pickle', 'wb') as f:
